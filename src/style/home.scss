@@ -1,0 +1,49 @@
+.home {
+  background: linear-gradient(#eef7ff, #fff) repeat-x top left;
+  background-size: 100% 300px;
+  .me-info {
+    padding: 12em 0;
+    text-align: center;
+    img {
+      border-radius: 99em;
+      display: block;
+      margin: 0 auto;
+      height: 13.7em;
+      box-shadow: 0 0.5em 2em #eef7ff;
+    }
+    h1{
+      font-family: 'Microsoft YaHei', 'Courier New', Courier, monospace;
+      font-size: 3.7em;
+      font-weight: 100;
+      padding: 0.3em 0;
+    }
+    p{
+      font-size: 1.6em;
+      font-weight: 200;
+      opacity: .5;
+    }
+  }
+  .me-summary{
+    max-width: 800px;
+    padding: 0 20px;
+    margin: 0 auto;
+    p{
+      padding: .7em 0;
+      font-size: 1.3em;
+      font-weight: 200;
+      color: #555;
+      small{
+        font-size: .7em;
+        color: #999;
+        user-select: none;
+      }
+      a{
+        font-weight: 100;
+      }
+    }
+    img{
+      width: 30px;
+      padding: .7em 0;
+    }
+  }
+}

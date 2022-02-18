@@ -1,0 +1,141 @@
+::selection {
+  background: rgba(0, 149, 255, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background-color: #a7b5fd;
+  height: 50px;
+  outline-offset: -2px;
+  outline: 2px solid #fff;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track-piece {
+  -webkit-border-radius: 0;
+}
+
+body,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+ol,
+p,
+ul {
+  margin: 0;
+}
+ol,
+ul {
+  padding: 0;
+}
+html {
+  font: 14px BlinkMacSystemFont, "HarmonyOS_Medium", "Hiragino Sans GB",
+    "Microsoft YaHei", "微软雅黑", sans-serif;
+  color: #222;
+}
+button,
+input,
+option,
+select,
+textarea {
+  font: inherit;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+}
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 0;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: #05b0ff;
+}
+img {
+  border: 0 none;
+}
+
+nav {
+  text-align: center;
+  line-height: 3em;
+  font-size: 1.6em;
+  a {
+    text-decoration: none;
+    padding: 1em;
+    transition: color 0.3s ease, background 0.3s ease;
+    color: #666;
+    b {
+      font-weight: 100;
+    }
+    &::before {
+      user-select: none;
+      margin-right: 0.2em;
+    }
+    &[name="x"]::before {
+      content: "🛸";
+    }
+    &[name="xproject"]::before {
+      content: "✨";
+    }
+    &[name="xdcim"]::before {
+      // content: "🖼️";
+      content: "📷";
+    }
+    &[name="xnote"]::before {
+      content: "📒";
+    }
+    &[name="xmusic"]::before {
+      content: "🎧";
+    }
+    &[name="xfan"]::before {
+      content: "📺";
+    }
+  }
+  .active {
+    b {
+      font-weight: 600;
+    }
+    &[name="x"] {
+      color: #05b0ff;
+      background-color: #eef7ff;
+    }
+    &[name="xproject"] {
+      color: #ff8405;
+      background-color: #fff5ea;
+    }
+    &[name="xdcim"] {
+      color: #4979a9;
+      background-color: #e8eeff;
+    }
+    &[name="xnote"] {
+      color: #4fa949;
+      background-color: #e9ffed;
+    }
+    &[name="xmusic"] {
+      color: #9b0909; // 9b0909
+      background-color: #fdefef;
+    }
+    &[name="xfan"] {
+      color: #fb7299;
+      background-color: #fff1f5;
+    }
+  }
+}
+.footer{
+  text-align: center;
+  color: #777;
+  background-color: #232323;
+  font-size: .5em;
+  margin-top: 3em;
+  padding: 1em 0;
+}

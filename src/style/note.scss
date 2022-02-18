@@ -1,0 +1,65 @@
+.note{
+  min-height: calc(100vh - 100px);
+  background: linear-gradient(#e9ffed,#fff) repeat-x top left;
+	background-size: 100% 300px;
+  .filtrate{
+    padding-top: 2.5em;
+    text-align: center;
+      button {
+        font-size: 1.2em;
+        padding: 0.25em 0.6em;
+        margin: 0 0.5em;
+        border: none;
+        background-color: #effff2;
+        color: #4979a9;
+        cursor: pointer;
+        &.active {
+          background-color: #fff;
+          border-radius: 0.5em;
+        }
+      }
+  }
+  .article-list{
+    max-width: 670px;
+    margin: 2.5em auto 0 auto;
+    .item{
+      &:not(:last-child){
+        margin-bottom: 1.5em;
+      }
+      h2{
+        font-family: '微软雅黑';
+        font-weight: 200;
+        font-size: 1.77em;
+        color: #4fa949;
+      }
+      .info{
+        // font-size: ;
+        color: #333;
+        span{
+          &:not(:first-child){
+            margin: .2em .5em;
+          }
+          &:not(:last-child)::after{
+            content: '◾';
+            margin-left: .7em;
+          }
+        }
+        // .cate {
+        //   &::before{
+        //     content: '✨';
+        //   }
+        // }
+        // .time {
+        //   &::before{
+        //     content: '🕐';
+        //   }
+        // }
+        // .look {
+        //   &::before{
+        //     content: '👀';
+        //   }
+        // }
+      }
+    }
+  }
+}
