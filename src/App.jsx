@@ -70,6 +70,7 @@ export default class App extends Component {
           <SkkAppNav />
         </header>
         <main>
+          {/* <Loading style={{ 'display': this.state.isLoadin ? 'block' : 'none' }} /> */}
           <Loading style={{ 'display': this.state.isLoadin ? 'block' : 'none' }} />
           <SkkRouterView />
         </main>
