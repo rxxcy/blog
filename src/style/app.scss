@@ -131,10 +131,13 @@ nav {
     }
   }
 }
+main{
+  min-height: calc(100vh - 150px);
+}
 .footer{
   text-align: center;
   color: #777;
-  background-color: #232323;
+  background-color: rgba($color: #ccc, $alpha: .1);
   font-size: .5em;
   margin-top: 3em;
   padding: 1em 0;

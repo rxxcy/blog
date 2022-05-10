@@ -1,0 +1,21 @@
+.load-container {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f6f7;
+  z-index: 99999;
+  .loader {
+    color: #61666D;
+    img {
+      border-radius: 10em;
+    }
+    p {
+      padding-top: 1em;
+      text-align: center;
+    }
+  }
+}

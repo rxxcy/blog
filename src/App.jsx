@@ -1,8 +1,11 @@
 import React, { Component, lazy } from 'react'
 import { Routes, Route, NavLink } from 'react-router-dom'
+import store from './store'
 
 import './style/app.scss'
 
+import AppFooter from './components/footer'
+import Loading from './components/loading'
 const Home = lazy(() => import('./views/home'))
 const Project = lazy(() => import('./views/project'))
 const Dcim = lazy(() => import('./views/dcim'))
@@ -52,6 +55,13 @@ const SkkRouterView = () => {
 }
 
 export default class App extends Component {
+  constructor(props) {
+    super(props)
+    const { isLoadin } = store.getState()
+    this.state = {
+      isLoadin
+    }
+  }
 
   render() {
     return (
@@ -59,13 +69,12 @@ export default class App extends Component {
         <header>
           <SkkAppNav />
         </header>
-        <section>
+        <main>
+          <Loading style={{ 'display': this.state.isLoadin ? 'block' : 'none' }} />
           <SkkRouterView />
-        </section>
-        <footer className='footer'>
-          <p>滇ICP备17008924号</p>
-          <p>若许闲乘月于2021年冬</p>
-          <p>由 html + div + css 驱动</p>
+        </main>
+        <footer>
+          <AppFooter />
         </footer>
       </>
     )

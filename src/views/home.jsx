@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import '../style/home.scss'
+import { getHomeData } from '../api'
 
 export default class Home extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       avatar: '//dingyue.ws.126.net/2021/1224/674c9894j00r4lvxy0029d000qo00qnp.jpg',
       nickname: '若许闲乘月',
       personal: '前端练习生',
     }
+  }
+
+  async componentDidMount() {
+    const res = await getHomeData()
   }
 
   render() {
@@ -26,7 +31,7 @@ export default class Home extends Component {
         </div>
         <div className="me-summary">
           <p>九零后，云南，现居昆明。</p>
-          <p>一九年毕业，云南财经大学，计算机科学与技术。 <small>精通Golang,PHP,Python,Java等编程语言名称单词拼写</small></p>
+          <p>一九年毕业，云南财经大学，计算机科学与技术。 <small className='del'>精通JavaScript,Rust,Golang,PHP,Python,Java等编程语言名称单词拼写</small></p>
           {/* <p>一手中单达摩,上杀黄金II下屠白银IV,高了排不到也打不赢,低了也没排到过.</p> */}
           <p>那河畔的金柳，是夕阳中的新娘；波光里的艳影，在我的心头荡漾。软泥上的青荇，油油的在水底招摇；在康河的柔波里，我甘心做一条水草！</p>
           <img src="//cdn.u1.huluxia.com/g4/M02/33/94/rBAAdmHFYfiAAEqcAAADyCKHgEI329.png" alt="🐥" />
