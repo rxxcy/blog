@@ -40,9 +40,21 @@ const routes = [
     path: '/note',
     name: 'note',
     component: () => import('../views/Note.vue'),
-    meta: {
-      title: '笔记',
-    },
+    children: [
+      {
+        path: '',
+        name: 'notelist',
+        component: () => import('../views/note/List.vue'),
+        meta: {
+          title: '笔记',
+        },
+      },
+      {
+        path: ':id',
+        name: 'notedetails',
+        component: () => import('../views/note/Details.vue'),
+      },
+    ],
   },
   {
     path: '/music',

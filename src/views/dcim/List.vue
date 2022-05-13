@@ -12,7 +12,7 @@
     </nav>
     <section>
       <div class="item" v-for="item in 21" :key="item">
-        <a href="/#/dcim/1">
+        <a :href="`/#/dcim/` + item">
           <div class="cover">
             <div class="star">⭐</div>
             <div class="count">7{{ item }}</div>

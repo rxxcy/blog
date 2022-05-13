@@ -37,7 +37,8 @@ a {
     content: '🎧';
   }
   &[name='fan']::before {
-    content: '📺';
+    // content: '📺';
+    content: '⚔️';
   }
 }
 .router-link-active {
@@ -65,8 +66,8 @@ a {
     background-color: #fdefef;
   }
   &[name='fan'] {
-    color: #fb7299;
-    background-color: #fff1f5;
+    color: #5c66eb;
+    background-color: rgba($color: #5c66eb, $alpha: 0.2);
   }
 }
 </style>
