@@ -10,7 +10,20 @@
         {{ item.title }}
       </button>
     </nav>
-    <section></section>
+    <section>
+      <div class="note">
+        <div class="item" v-for="i in 20" :key="i">
+          <h2 class="title">
+            <a :href="'/#/note/' + i">Vue3 从入门到放弃{{ i }}</a>
+          </h2>
+          <p class="info">
+            <span>代码</span>
+            <time>2020-02-02</time>
+          </p>
+        </div>
+      </div>
+      <div class="tip">{{ tip }}</div>
+    </section>
   </div>
 </template>
 
@@ -20,6 +33,7 @@ import { useStore } from 'vuex'
 const store = useStore()
 const category = computed(() => store.state.note.category)
 const active = ref(0)
+const tip = ref('加载中')
 
 const handlerChnageActiveCategory = id => {
   if (id == active.value) return
@@ -44,8 +58,36 @@ nav {
     transition: all 0.3s;
   }
   .active {
-    color: #4979a9;
+    color: #4fa949;
     background-color: #fff;
+  }
+}
+section {
+  max-width: 800px;
+  padding: 0 20px;
+  margin: 0 auto;
+  .item {
+    font-size: 0.8em;
+    margin-bottom: 2em;
+    .title {
+      font-size: 2.2em;
+      font-weight: 100;
+      line-height: 1.1;
+      margin-bottom: 0.3em;
+      a {
+        color: #4fa949;
+      }
+    }
+    .info {
+      color: #b0d9ad;
+      span {
+        margin-right: 1em;
+      }
+    }
+  }
+  .tip {
+    text-align: center;
+    margin: 3em 0;
   }
 }
 </style>
