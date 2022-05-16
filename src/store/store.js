@@ -2,6 +2,10 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    loader: {
+      status: true,
+      img: 'https://img.rxxcy.com/i/images/2022/05/6281bab828fc6.gif',
+    },
     nav: [
       { id: 1, name: '主页', en: 'home', path: '/' },
       { id: 2, name: '项目', en: 'project', path: '/project' },
@@ -35,17 +39,22 @@ export default createStore({
     },
   },
   mutations: {
-    ADD(state, value) {
-      state.dcim.category.push({ id: 5, title: value })
+    CHANGE_LOADER_STATUS(state, value) {
+      state.loader.status = value
     },
   },
   actions: {
-    add({ commit }, value) {
-      commit('ADD', value)
+    loaderOpen({ commit }) {
+      commit('CHANGE_LOADER_STATUS', true)
+    },
+    loaderClose({ commit }) {
+      commit('CHANGE_LOADER_STATUS', false)
     },
   },
   modules: {},
   getters: {
     nav: state => state.nav,
+    loader_status: state => state.loader.status,
+    loader_img: state => state.loader.img,
   },
 })

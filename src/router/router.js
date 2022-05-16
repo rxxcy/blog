@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import store from '../store/store'
 import Home from '../views/Home.vue'
 
 const routes = [
@@ -94,6 +95,8 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const { title } = to.meta
   window.document.title = title ? `${title} - 若许闲乘月` : '若许闲乘月'
+  store.dispatch('loaderOpen')
+  setTimeout(() => store.dispatch('loaderClose'), 500)
   next()
 })
 
