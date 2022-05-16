@@ -20,8 +20,8 @@ const list = ref([])
 
 onMounted(() => {
   for (let index = 0; index < 20; index++) {
-    const api = 'https://api#uomg#com/api/rand.img3'
-    list.value.push({})
+    const api = `https://api#rxxcy#com/v1/image/buyershow?v=${Math.random()}`
+    list.value.push({ src: api })
   }
 })
 </script>
