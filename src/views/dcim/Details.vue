@@ -21,8 +21,8 @@
         黑漆漆的，不知是日是夜。赵家的狗又叫起来了。
       </div>
     </div>
-    <div class="skk-container">
-      <div class="skk-item" v-for="i in list">
+    <div class="container">
+      <div class="item" v-for="i in list">
         <skk-image :src="i" />
       </div>
     </div>
@@ -39,13 +39,11 @@ const list = ref([])
 const store = useStore()
 const me = reactive(store.state.me)
 
-console.log('SkkImage', SkkImage)
-
 onMounted(async () => {
-  for (let index = 0; index < 13; index++) {
-    // const { data } = await axios.get('https://api.rxxcy.com/v1/image/buyershow?format=string')
+  for (let index = 0; index < 25; index++) {
+    const { data } = await axios.get('https://api.rxxcy.com/v1/image/buyershow?format=string')
     // console.log(data)
-    // list.value.push(data)
+    list.value.push(data)
   }
 })
 </script>
@@ -89,31 +87,44 @@ main {
       line-height: 1.7em;
     }
   }
-  .skk-container {
-    padding: 1em 2em;
-    display: flex;
-    /*设置元素是否换行*/
-    flex-wrap: wrap;
-    /*设置子元素排列方式*/
-    // justify-content: space-between;
-    /*设置为侧轴排列*/
-    flex-direction: row;
-    .skk-item {
-      // width: (100% / 5) - 20px;
-      width: 356px;
-      height: 356px;
-      padding: 10px 10px;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-  }
+
+  // .skk-container {
+  //   box-sizing: border-box;
+  //   padding: 1em 2em;
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   .skk-item {
+  //     width: 356px;
+  //     height: 356px;
+  //     padding: 10px 10px;
+  //     img {
+  //       width: 100%;
+  //       height: 100%;
+  //       object-fit: cover;
+  //     }
+  //   }
+  // }
   .bottom {
     padding: 10em 0 5em 0;
     text-align: center;
     color: $grey;
+  }
+
+  $container-width: 1800px;
+  $gap: 10px;
+  $colmun: 5;
+  .container {
+    width: $container-width;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    .item {
+      width: ($container-width - (($colmun * 2) * $gap)) / $colmun;
+      // height: 100%;
+      height: ($container-width - (($colmun * 2) * $gap)) / $colmun + 20px;
+      margin: $gap;
+      background-color: rgba($color: #000000, $alpha: 0.1);
+    }
   }
 }
 </style>

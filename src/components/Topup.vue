@@ -6,6 +6,8 @@
 const handler2up = () => {
   console.log(`顶你个肺 ${Math.random()}`)
 }
+
+// window.addEventListener()
 </script>
 
 <style lang="scss" scoped>
@@ -16,7 +18,7 @@ $bgc: #0693e3;
   bottom: 100px;
   width: 40px;
   height: 40px;
-  z-index: 999;
+  z-index: $top-up-z-index;
   background-color: #fff;
   border-radius: 45px;
   box-shadow: 0px 0px 1px 1px $bgc;

@@ -16,7 +16,7 @@
           <div class="cover">
             <div class="star">⭐</div>
             <div class="count">7{{ item }}</div>
-            <img src="https://img.rxxcy.com/i/images/2022/05/627c83a0ba476.jpg" alt="" />
+            <skk-image src="https://img.rxxcy.com/i/images/2022/05/627c83a0ba476.jpg" />
           </div>
           <div class="info">
             <h2>拔剑四顾 {{ item % 2 == 1 ? '' : '这里还有很长的字' }}</h2>
@@ -31,6 +31,8 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
+import skkImage from '../../components/Image.vue'
+
 const store = useStore()
 const category = computed(() => store.state.dcim.category)
 const active = ref(0)

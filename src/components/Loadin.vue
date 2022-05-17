@@ -3,7 +3,7 @@
     <div class="img">
       <img :src="loader.img" alt="" />
     </div>
-    <div class="zhe"></div>
+    <!-- <div class="zhe"></div> -->
     <p>加载中... {{ gwei ? gwei : '' }}</p>
   </div>
 </template>
@@ -48,20 +48,22 @@ watch(
   justify-content: center;
   align-items: center;
   .img {
-    z-index: 99999;
+    z-index: $loder-img-z-index;
     img {
       border-radius: 5em;
     }
   }
-  .zhe {
-    background-color: #f7fcff;
-    opacity: 0.9;
+  &::before {
+    content: '';
+    // background-color: #f7fcff;
     height: 100vh;
     width: 100vw;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 99998;
+    z-index: $loder-zhe-z-index;
+    background-color: rgba(247, 249, 250, 0.2);
+    backdrop-filter: blur(7px);
   }
   p {
     z-index: 99999;
