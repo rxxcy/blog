@@ -1,20 +1,10 @@
 <template>
-  <div class="topup" @click="scrollToTop"><p>up</p></div>
+  <div class="topup" @click="handler2up"><p>up</p></div>
 </template>
 
 <script setup>
-let timer
-const handlerUp = () => {
-  cancelAnimationFrame(timer)
-  timer = requestAnimationFrame(function fn() {
-    const oTop = document.body.scrollTop || document.documentElement.scrollTop
-    if (oTop > 0) {
-      document.body.scrollTop = document.documentElement.scrollTop = oTop - 50
-      timer = requestAnimationFrame(fn)
-    } else {
-      cancelAnimationFrame(timer)
-    }
-  })
+const handler2up = () => {
+  console.log(`顶你个肺 ${Math.random()}`)
 }
 </script>
 

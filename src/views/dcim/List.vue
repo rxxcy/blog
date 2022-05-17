@@ -11,15 +11,15 @@
       </button>
     </nav>
     <section>
-      <div class="item" v-for="item in 21" :key="item">
+      <div class="item" v-for="item in 23" :key="item">
         <a :href="`/#/dcim/` + item">
           <div class="cover">
             <div class="star">⭐</div>
             <div class="count">7{{ item }}</div>
-            <img src="https://img.rxxcy.com/i/images/2022/05/627c83a0ba476.jpg" alt="" srcset="" />
+            <img src="https://img.rxxcy.com/i/images/2022/05/627c83a0ba476.jpg" alt="" />
           </div>
           <div class="info">
-            <h2>如果有一天你的信念忽然倒塌</h2>
+            <h2>拔剑四顾 {{ item % 2 == 1 ? '' : '这里还有很长的字' }}</h2>
             <time>2022-09-07</time>
           </div>
         </a>
@@ -62,21 +62,29 @@ nav {
     background-color: #fff;
   }
 }
+
+$item-width: 244px;
+$item-margin: 21px;
+$line-num: 5;
+
 section {
   padding: 0 1em 10em;
   text-align: center;
-  max-width: 1600px;
+  max-width: ($item-width + ($item-margin * 2)) * $line-num;
   margin: 0 auto;
   // display: flex;
   // flex-wrap: wrap;
   // justify-content: center;
+  display: flex;
+  /*设置元素是否换行*/
+  flex-wrap: wrap;
   .item {
-    display: inline-block;
-    vertical-align: top;
-    padding: 2em;
+    // display: inline-block;
+    // vertical-align: top;
+    margin: $item-margin;
     .cover {
-      width: 16em;
-      height: 16em;
+      width: $item-width;
+      height: $item-width;
       overflow: hidden;
       border-radius: 0.2em;
       box-shadow: 0 5px 25px rgb(0 128 255 / 5%);

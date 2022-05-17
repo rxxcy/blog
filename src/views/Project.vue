@@ -2,10 +2,10 @@
   <main>
     <div class="project">
       <div class="container">
-        <div class="item" v-for="item in 7">
-          <img src="//img.rxxcy.com/i/images/2022/05/627c869425bd3.png" alt="" />
-          <h3>项目{{ item }}</h3>
-          <p>晴川历历汉阳树</p>
+        <div class="item" v-for="item in 5">
+          <img src="https://img.rxxcy.com/i/images/2022/05/62834491a2906.png" alt="" />
+          <h3>Vu3全家桶博客系统{{ item }}</h3>
+          <p>造轮子</p>
         </div>
       </div>
     </div>
@@ -33,6 +33,7 @@ main {
           width: 8em;
           height: 8em;
           border-radius: 2em;
+          object-fit: cover;
         }
       }
     }

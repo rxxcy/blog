@@ -16,7 +16,7 @@ export default createStore({
     ],
     me: {
       nick: '若许闲乘月',
-      avatar: '//cdn.qiniu.rxxcy.com/images/2022/04/62545c52375b9.jpeg',
+      avatar: 'https://img.rxxcy.com/i/images/2022/05/6282fd105912a.jpeg',
       autograph: '前端练习生',
       description: [],
     },
