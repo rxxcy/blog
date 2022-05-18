@@ -8,6 +8,7 @@ export const loaderImage = src => {
     }
 
     image.onerror = e => {
+      console.log('加载失败了哦')
       reject(e)
       dispose()
     }

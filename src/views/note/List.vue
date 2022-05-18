@@ -14,7 +14,7 @@
       <div class="note">
         <div class="item" v-for="i in 20" :key="i">
           <h2 class="title">
-            <a :href="'/#/note/' + i">Vue3 从入门到放弃{{ i }}</a>
+            <a :href="'/#/note/' + i">Re: 从零开始的黑魔法之旅 {{ i }}</a>
           </h2>
           <p class="info">
             <span>代码</span>

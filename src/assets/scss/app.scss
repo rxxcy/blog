@@ -3,21 +3,24 @@
   color: #fff;
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #a7b5fd;
-  height: 50px;
-  outline-offset: -2px;
-  outline: 2px solid #fff;
-}
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  // width: 8px;
+  width: 0;
 }
 
-::-webkit-scrollbar-track-piece {
-  -webkit-border-radius: 0;
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-left: 1px solid rgba(128, 128, 128, 0.18);
+  background: var(--color-body-bg);
 }
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(128, 128, 128, 0.38);
+}
+
 
 body,
 form,

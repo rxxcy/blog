@@ -41,9 +41,10 @@ const me = reactive(store.state.me)
 
 onMounted(async () => {
   for (let index = 0; index < 25; index++) {
-    const { data } = await axios.get('https://api.rxxcy.com/v1/image/buyershow?format=string')
+    // const { data } = await axios.get('https://api.rxxcy.com/v1/image/buyershow?format=string')
     // console.log(data)
-    list.value.push(data)
+    // list.value.push(data)
+    list.value.push('https://img.rxxcy.com/i/images/2022/05/627c83a0ba476.jpg')
   }
 })
 </script>
@@ -120,7 +121,6 @@ main {
     flex-wrap: wrap;
     .item {
       width: ($container-width - (($colmun * 2) * $gap)) / $colmun;
-      // height: 100%;
       height: ($container-width - (($colmun * 2) * $gap)) / $colmun + 20px;
       margin: $gap;
       background-color: rgba($color: #000000, $alpha: 0.1);
