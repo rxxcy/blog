@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import store from '../store/store'
-import Home from '../views/Home.vue'
+import Home from '../views/home.vue'
 
 const routes = [
   {
@@ -12,7 +12,7 @@ const routes = [
   {
     path: '/project',
     name: 'project',
-    component: () => import('../views/Project.vue'),
+    component: () => import('../views/project.vue'),
     meta: {
       title: '项目',
     },
@@ -20,12 +20,12 @@ const routes = [
   {
     path: '/dcim',
     name: 'dcim',
-    component: () => import('../views/Dcim.vue'),
+    component: () => import('../views/dcim.vue'),
     children: [
       {
         path: '',
         name: 'dcimlist',
-        component: () => import('../views/dcim/List.vue'),
+        component: () => import('../views/dcim/list.vue'),
         meta: {
           title: '相册',
         },
@@ -33,19 +33,19 @@ const routes = [
       {
         path: ':id',
         name: 'dcimdetails',
-        component: () => import('../views/dcim/Details.vue'),
+        component: () => import('../views/dcim/details.vue'),
       },
     ],
   },
   {
     path: '/note',
     name: 'note',
-    component: () => import('../views/Note.vue'),
+    component: () => import('../views/note.vue'),
     children: [
       {
         path: '',
         name: 'notelist',
-        component: () => import('../views/note/List.vue'),
+        component: () => import('../views/note/list.vue'),
         meta: {
           title: '笔记',
         },
@@ -53,14 +53,14 @@ const routes = [
       {
         path: ':id',
         name: 'notedetails',
-        component: () => import('../views/note/Details.vue'),
+        component: () => import('../views/note/details.vue'),
       },
     ],
   },
   {
     path: '/music',
     name: 'music',
-    component: () => import('../views/Music.vue'),
+    component: () => import('../views/music.vue'),
     meta: {
       title: '音乐',
     },
@@ -68,7 +68,7 @@ const routes = [
   {
     path: '/fan',
     name: 'fan',
-    component: () => import('../views/Fan.vue'),
+    component: () => import('../views/fan.vue'),
     meta: {
       title: '追番',
     },
@@ -76,7 +76,7 @@ const routes = [
   {
     path: '/404',
     name: 'notfound',
-    component: () => import('../views/Notfound.vue'),
+    component: () => import('../views/notfound.vue'),
     meta: {
       title: '404',
     },

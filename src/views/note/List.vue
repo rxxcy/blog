@@ -22,18 +22,28 @@
           </p>
         </div>
       </div>
-      <div class="tip">{{ tip }}</div>
     </section>
+    <Below :message="message" />
   </div>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import Below from '../../components/Below.vue'
+import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
 const store = useStore()
 const category = computed(() => store.state.note.category)
 const active = ref(0)
-const tip = ref('加载中')
+const message = ref('到底啦')
+
+onMounted(() => {
+  const route = useRoute()
+  const { cate } = route.query
+  if (!/^\d+$/.test(cate)) return
+  console.log(Number(cate))
+  active.value = Number(cate)
+})
 
 const handlerChnageActiveCategory = id => {
   if (id == active.value) return

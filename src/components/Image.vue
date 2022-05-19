@@ -1,9 +1,9 @@
 <template>
   <img class="image" :style="is_loaded ? '' : style" ref="image" :src="real" @click="handlerPreview" />
   <div v-if="preview_dialog" class="preview" @click="closePreview">
-    <div class="last" @click="handlerLastOne">上</div>
+    <!-- <div class="last" @click="handlerLastOne">上</div> -->
     <img ref="preview_image" :src="src" />
-    <div class="next" @click="handlerNextOne">下</div>
+    <!-- <div class="next" @click="handlerNextOne">下</div> -->
   </div>
 </template>
 
@@ -39,30 +39,30 @@ const real = ref(props.default)
 const style = reactive({})
 
 const handlerLastOne = () => {
-  e = e || window.event
-  if (e.stopPropagation) {
-    e.stopPropagation()
-  } else {
-    e.cancelBubble = true
-  }
-  if (e.preventDefault) {
-    e.preventDefault()
-  } else {
-    e.returnValue = false
-  }
+  // e = e || window.event
+  // if (e.stopPropagation) {
+  //   e.stopPropagation()
+  // } else {
+  //   e.cancelBubble = true
+  // }
+  // if (e.preventDefault) {
+  //   e.preventDefault()
+  // } else {
+  //   e.returnValue = false
+  // }
 }
 const handlerNextOne = () => {
-  e = e || window.event
-  if (e.stopPropagation) {
-    e.stopPropagation()
-  } else {
-    e.cancelBubble = true
-  }
-  if (e.preventDefault) {
-    e.preventDefault()
-  } else {
-    e.returnValue = false
-  }
+  // e = e || window.event
+  // if (e.stopPropagation) {
+  //   e.stopPropagation()
+  // } else {
+  //   e.cancelBubble = true
+  // }
+  // if (e.preventDefault) {
+  //   e.preventDefault()
+  // } else {
+  //   e.returnValue = false
+  // }
 }
 
 const handlerPreview = () => {

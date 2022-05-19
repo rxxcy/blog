@@ -26,11 +26,12 @@
         <skk-image :src="i" />
       </div>
     </div>
-    <div class="bottom">到底啦</div>
+    <Below />
   </main>
 </template>
 
 <script setup>
+import below from '../../components/Below.vue'
 import { onMounted, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
 import axios from 'axios'

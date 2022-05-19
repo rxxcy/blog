@@ -37,11 +37,11 @@
       <code class="language-c">{{code}}</code>
     </pre>
   </div>
-
-  <div class="footer">到底啦</div>
+  <Below />
 </template>
 
 <script setup>
+import Below from '../../components/Below.vue'
 import { onMounted, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
@@ -193,10 +193,5 @@ onMounted(() => {
     color: #666;
     border-left: 4px solid #ddd;
   }
-}
-.footer {
-  font-size: 0.9em;
-  text-align: center;
-  margin: 5em 0 2em 0;
 }
 </style>

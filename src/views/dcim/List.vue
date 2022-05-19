@@ -29,13 +29,21 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
 import skkImage from '../../components/Image.vue'
 
 const store = useStore()
 const category = computed(() => store.state.dcim.category)
 const active = ref(0)
+
+onMounted(() => {
+  const route = useRoute()
+  const { cate } = route.query
+  if (!/^\d+$/.test(cate)) return
+  active.value = Number(cate)
+})
 
 const handlerChnageActiveCategory = id => {
   if (id == active.value) return
