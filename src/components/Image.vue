@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-// 懒加载
+// todo 预览切换 下个版本再写了
 import { nextTick, onMounted, reactive, ref } from 'vue'
 import { loaderImage } from '../utils'
 const props = defineProps({
