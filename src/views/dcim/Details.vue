@@ -121,8 +121,8 @@ main {
     display: flex;
     flex-wrap: wrap;
     .item {
-      width: ($container-width - (($colmun * 2) * $gap)) / $colmun;
-      height: ($container-width - (($colmun * 2) * $gap)) / $colmun + 20px;
+      width: calc(($container-width - (($colmun * 2) * $gap)) / $colmun);
+      height: calc(($container-width - (($colmun * 2) * $gap)) / $colmun + 20px);
       margin: $gap;
       background-color: rgba($color: #000000, $alpha: 0.1);
     }
