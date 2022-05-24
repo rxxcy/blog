@@ -40,9 +40,6 @@ const list = ref([])
 const store = useStore()
 const me = reactive(store.state.me)
 
-/**
- * 啥也没改
- */
 onMounted(async () => {
   for (let index = 0; index < 25; index++) {
     // const { data } = await axios.get('https://api.rxxcy.com/v1/image/buyershow?format=string')
