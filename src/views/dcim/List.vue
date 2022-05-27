@@ -39,11 +39,15 @@ const category = computed(() => store.state.dcim.category)
 const active = ref(0)
 
 onMounted(() => {
+  setActiveCate()
+})
+
+const setActiveCate = () => {
   const route = useRoute()
   const { cate } = route.query
   if (!/^\d+$/.test(cate)) return
   active.value = Number(cate)
-})
+}
 
 const handlerChnageActiveCategory = id => {
   if (id == active.value) return

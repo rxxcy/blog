@@ -70,4 +70,7 @@ a {
     background-color: rgba($color: #5c66eb, $alpha: 0.2);
   }
 }
+
+@media screen and (min-width: 600px) {
+}
 </style>

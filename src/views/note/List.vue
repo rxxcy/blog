@@ -38,12 +38,15 @@ const active = ref(0)
 const message = ref('到底啦')
 
 onMounted(() => {
+  setActiveCate()
+})
+
+const setActiveCate = () => {
   const route = useRoute()
   const { cate } = route.query
   if (!/^\d+$/.test(cate)) return
-  console.log(Number(cate))
   active.value = Number(cate)
-})
+}
 
 const handlerChnageActiveCategory = id => {
   if (id == active.value) return
