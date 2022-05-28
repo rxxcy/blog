@@ -26,12 +26,12 @@
         <skk-image :src="i" />
       </div>
     </div>
-    <Below />
+    <below />
   </main>
 </template>
 
 <script setup>
-import below from '../../components/Below.vue'
+import Below from '../../components/Below.vue'
 import { onMounted, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
 import axios from 'axios'
@@ -41,6 +41,8 @@ const store = useStore()
 const me = reactive(store.state.me)
 
 onMounted(async () => {
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
   for (let index = 0; index < 25; index++) {
     // const { data } = await axios.get('https://api.rxxcy.com/v1/image/buyershow?format=string')
     // console.log(data)

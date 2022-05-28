@@ -1,6 +1,6 @@
 <template>
   <div class="info">
-    <h1>C++ 从入门到放弃 1</h1>
+    <h1 class="title">C++ 从入门到放弃 1</h1>
     <p>
       <img :src="me.avatar" :alt="me.nick" />
       <span>{{ me.nick }}</span>
@@ -93,6 +93,8 @@ void SpkModel::Unref()
     }
 }`
 onMounted(() => {
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
   Prism.highlightAll()
 })
 </script>
@@ -102,6 +104,7 @@ onMounted(() => {
   max-width: 800px;
   padding: 7em 20px 0 20px;
   margin: 0 auto;
+  transition: all 0.5s;
   h1 {
     font-family: '微软雅黑';
     font-weight: 200;
@@ -124,9 +127,16 @@ onMounted(() => {
     time {
       margin-right: 1em;
     }
+    time {
+      color: $grey;
+    }
+    .vie {
+      color: $grey;
+    }
   }
 }
 .content {
+  transition: all 0.5s;
   max-width: 800px;
   padding: 2.5em 0;
   margin: 0 auto;
@@ -192,6 +202,21 @@ onMounted(() => {
     padding: 3px 3px 3px 5px;
     color: #666;
     border-left: 4px solid #ddd;
+  }
+}
+
+@media screen and (max-width: $mobile-width) {
+  .info {
+    padding-top: 2em;
+    .title {
+      font-family: '微软雅黑';
+      font-weight: 200;
+      font-size: 2.2em;
+    }
+  }
+  .content {
+    width: 90%;
+    padding-top: 1.5em;
   }
 }
 </style>

@@ -1,15 +1,15 @@
 <template>
   <main>
     <div class="me">
-      <img :src="me.avatar" alt="" />
-      <h1>{{ me.nick }}</h1>
-      <p>{{ me.autograph }}</p>
+      <img class="avatar" :src="me.avatar" alt="" />
+      <h1 class="nick">{{ me.nick }}</h1>
+      <p class="one">{{ me.autograph }}</p>
     </div>
     <div class="summary">
       <p>九零后，云南，现居昆明。</p>
       <p>
         一九年毕业，云南财经大学，计算机科学与技术。
-        <small className="del">精通JavaScript,Rust,Golang,PHP,Python,Java等编程语言名称单词拼写.</small>
+        <small class="doge">精通JavaScript,Rust,Golang,PHP,Python,Java等编程语言名称单词拼写.</small>
       </p>
       <p>
         那河畔的金柳，是夕阳中的新娘；波光里的艳影，在我的心头荡漾。软泥上的青荇，油油的在水底招摇；在康河的柔波里，我甘心做一条水草！
@@ -42,6 +42,7 @@ main {
   background-size: 100% 300px;
   user-select: none;
   .me {
+    transition: all 0.3s;
     padding: 12em 0;
     text-align: center;
     img {
@@ -84,6 +85,27 @@ main {
         height: 1.5em;
         margin: -0.3em 0.2em -0.1em;
       }
+    }
+  }
+}
+
+@media screen and (max-width: $mobile-width) {
+  .me {
+    padding: 5em 0 !important;
+    .avatar {
+      height: 10em;
+    }
+    .nick {
+      font-size: 3em;
+    }
+    .one {
+      font-size: 1.1em;
+    }
+  }
+  .summary {
+    max-width: 90% !important;
+    .doge {
+      font-size: 0.6em;
     }
   }
 }

@@ -59,6 +59,7 @@ const handlerChnageActiveCategory = id => {
 nav {
   padding: 6em 0 4em;
   text-align: center;
+  transition: all 0.3s;
   button {
     font-size: 1.2em;
     outline: none;
@@ -134,6 +135,27 @@ section {
       time {
         color: rgba($color: $color, $alpha: 0.7);
       }
+    }
+  }
+}
+
+@media screen and (max-width: $mobile-width) {
+  nav {
+    padding: 2em 0 1em 0;
+    button {
+      margin: 0 0.3em;
+    }
+  }
+  .item {
+    width: 100%;
+    // background-color: #000;
+    .cover {
+      width: 100% !important;
+    }
+  }
+  .info {
+    h2 {
+      width: 100% !important;
     }
   }
 }

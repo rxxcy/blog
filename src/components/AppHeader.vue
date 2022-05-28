@@ -15,11 +15,32 @@ const store = useStore()
 const nav = computed(() => store.getters.nav)
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
+header {
+  // background-color: #000;
+  nav {
+    user-select: none;
+    text-align: center;
+    font-size: 1.6em;
+    display: flex;
+    justify-content: center;
+    a {
+      text-decoration: none;
+      padding: 0.85em;
+      transition: color 0.3s ease, background 0.3s ease;
+      color: #666;
+      transition: all 0.3s;
+      b {
+        margin-left: 0.2em;
+        font-weight: 100;
+      }
+    }
+  }
+}
+
 a {
   &::before {
     user-select: none;
-    margin-right: 0.2em;
   }
   &[name='home']::before {
     content: '🛸';
@@ -67,10 +88,25 @@ a {
   }
   &[name='fan'] {
     color: #5c66eb;
-    background-color: rgba($color: #5c66eb, $alpha: 0.2);
+    background-color: #dee0fb;
   }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 720px) {
+  nav {
+    display: flex;
+    justify-content: space-around;
+    a {
+      flex: 1;
+      padding: 0.5em 0 !important;
+      &::before {
+        font-size: 1.3em;
+        padding: 0em;
+      }
+      b {
+        display: none;
+      }
+    }
+  }
 }
 </style>

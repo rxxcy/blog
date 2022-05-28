@@ -2,14 +2,14 @@
   <img class="image" :style="is_loaded ? '' : style" ref="image" :src="real" @click="handlerPreview" />
   <div v-if="preview_dialog" class="preview" @click="closePreview">
     <!-- <div class="last" @click="handlerLastOne">上</div> -->
-    <img ref="preview_image" :src="src" />
+    <img ref="preview_image" :style="preview_style" :src="src" />
     <!-- <div class="next" @click="handlerNextOne">下</div> -->
   </div>
 </template>
 
 <script setup>
 // todo 预览切换 下个版本再写了
-import { nextTick, onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { loaderImage } from '../utils'
 const props = defineProps({
   src: {
@@ -22,7 +22,7 @@ const props = defineProps({
   },
   error: {
     type: String,
-    default: () => 'https://www.dute.org/placeholder/200x200?fontsize=32&text=加载失败&bgcolor=DCDCDC',
+    default: () => 'https://www.dute.org/placeholder/154x57?fontsize=32&text=加载失败&bgcolor=e5e5e5',
   },
   preview: {
     type: Boolean,
@@ -30,6 +30,7 @@ const props = defineProps({
   },
 })
 
+const preview_style = reactive({})
 const preview_image = ref(null)
 
 const image = ref(null)
@@ -68,12 +69,12 @@ const handlerNextOne = () => {
 const handlerPreview = () => {
   if (!props.preview) return false
   preview_dialog.value = true
-  window.addEventListener('mousewheel', toBig, { passive: false })
+  window.addEventListener('mousewheel', handlerZoom, { passive: false })
 }
 
 const closePreview = () => {
   preview_dialog.value = false
-  window.removeEventListener('mousewheel', toBig)
+  window.removeEventListener('mousewheel', handlerZoom)
 }
 
 onMounted(() => {
@@ -85,6 +86,26 @@ onMounted(() => {
   style.height = '130px'
   style.display = 'block'
   style.margin = `${parent.offsetHeight / 2 - 65}px auto`
+
+  /**
+   * 自动获取预览图样式
+   */
+  const width = window.document.documentElement.clientWidth || window.document.body.clientWidth
+  const height = window.document.documentElement.clientHeight || window.document.body.clientHeight
+  if (width > height) {
+    /**
+     * pc
+     */
+    preview_style.height = '100vh'
+  } else {
+    /**
+     * mobile
+     */
+    preview_style.width = '100vw'
+  }
+  /**
+   * 图片懒加载
+   */
   lazyLoader()
 })
 
@@ -105,7 +126,7 @@ const lazyLoader = () => {
   ob.observe(dom)
 }
 
-const toBig = e => {
+const handlerZoom = e => {
   const { deltaY, wheelDelta } = e
   e = e || window.event
   if (e.stopPropagation) {
@@ -158,14 +179,14 @@ const toBig = e => {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(247, 249, 250, 0.2);
+    background-color: #e5e5e5;
     backdrop-filter: blur(30px);
     z-index: -1;
   }
   img {
     display: block;
     text-align: center;
-    height: 100vh;
+    // height: 100vh;
   }
   .next,
   .last {

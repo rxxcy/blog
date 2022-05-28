@@ -12,7 +12,7 @@
     </nav>
     <section>
       <div class="note">
-        <div class="item" v-for="i in 20" :key="i">
+        <div class="item" v-for="i in 50" :key="i">
           <h2 class="title">
             <a :href="'/#/note/' + i">Re: 从零开始的黑魔法之旅 {{ i }}</a>
           </h2>
@@ -82,6 +82,7 @@ section {
   .item {
     font-size: 0.8em;
     margin-bottom: 2em;
+    transition: all 0.3s;
     .title {
       font-size: 2.2em;
       font-weight: 100;
@@ -101,6 +102,24 @@ section {
   .tip {
     text-align: center;
     margin: 3em 0;
+  }
+}
+
+@media screen and (max-width: $mobile-width) {
+  nav {
+    padding: 2em 0;
+    button {
+      margin: 0 0.3em;
+    }
+  }
+  .item {
+    margin-bottom: 3em !important;
+    .title {
+      text-align: center;
+    }
+    .info {
+      text-align: center;
+    }
   }
 }
 </style>

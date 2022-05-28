@@ -96,7 +96,7 @@ router.beforeEach((to, from, next) => {
   const { title } = to.meta
   window.document.title = title ? `${title} - 若许闲乘月` : '若许闲乘月'
   store.dispatch('loaderOpen')
-  setTimeout(() => store.dispatch('loaderClose'), 5)
+  setTimeout(() => store.dispatch('loaderClose'), 300)
   next()
 })
 

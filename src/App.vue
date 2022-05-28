@@ -11,4 +11,4 @@ import Loadin from './components/Loadin.vue'
 import TopUp from './components/Topup.vue'
 </script>
 
-<style lang="scss"></style>
+<style></style>
