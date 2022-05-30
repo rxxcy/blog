@@ -3,7 +3,7 @@
     <div class="music">
       <div class="jumbotron">
         <div class="cover">
-          <h2 class="title">听不听</h2>
+          <h2 class="title">写几个字</h2>
         </div>
         <div class="info">
           <h2 class="title">我的歌单</h2>
@@ -20,13 +20,14 @@
       <div class="track-list">
         <div v-for="item in 20" class="track">
           <!-- <div> -->
-          <img class="cover" src="http://p3.music.126.net/QEvqm9LB8TRf5hbZKeMQ-Q==/109951167486838988.jpg?param=224y224" />
+          <img class="cover" src="https://p1.music.126.net/UsSAd3Bdf77DjhCuTSEvUw==/109951163077613693.jpg?param=512y512" />
           <!-- </div> -->
           <div class="info">
             <div class="container">
               <h2 class="title">烟火里的尘埃</h2>
               <p class="artist">华晨宇</p>
             </div>
+            <div class="blank"></div>
           </div>
           <div class="album">烟火里的尘埃</div>
           <!-- <div class="actions"></div> -->
@@ -142,26 +143,31 @@ main {
           flex: 1;
           display: flex;
           flex-direction: column;
-          .title {
-            font-size: 18px;
-            font-weight: 200;
-            cursor: default;
-            padding-right: 16px;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            overflow: hidden;
-            word-break: break-all;
-            cursor: pointer;
-          }
-          .artist {
-            margin-top: 2px;
-            font-size: 13px;
-            opacity: 0.68;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            overflow: hidden;
+          .container {
+            .title {
+              font-size: 18px;
+              font-weight: 200;
+              cursor: default;
+              padding-right: 16px;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 1;
+              overflow: hidden;
+              word-break: break-all;
+              cursor: pointer;
+            }
+            .artist {
+              margin-top: 2px;
+              font-size: 13px;
+              opacity: 0.68;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 1;
+              overflow: hidden;
+            }
+            .blank {
+              flex: 1;
+            }
           }
         }
         .album {
