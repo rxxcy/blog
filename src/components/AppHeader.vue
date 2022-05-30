@@ -17,7 +17,15 @@ const nav = computed(() => store.getters.nav)
 
 <style lang="scss" scoped>
 header {
-  // background-color: #000;
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: hsla(0, 0%, 100%, 0.86);
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: $header-z-index;
+
   nav {
     user-select: none;
     text-align: center;
@@ -26,7 +34,7 @@ header {
     justify-content: center;
     a {
       text-decoration: none;
-      padding: 0.85em;
+      padding: 0.75em 0.85em;
       transition: color 0.3s ease, background 0.3s ease;
       color: #666;
       transition: all 0.3s;

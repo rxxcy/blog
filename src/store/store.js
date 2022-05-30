@@ -1,7 +1,11 @@
 import { createStore } from 'vuex'
+// import home from './modules/home'
 
 export default createStore({
   state: {
+    scroll: {
+      show: true,
+    },
     loader: {
       status: true,
       img: 'https://img.rxxcy.com/i/images/2022/05/6281bab828fc6.gif',
@@ -44,14 +48,25 @@ export default createStore({
     },
   },
   actions: {
+    /**
+     * 开加载中
+     */
     loaderOpen({ commit }) {
       commit('CHANGE_LOADER_STATUS', true)
     },
+    /**
+     * 关加载中
+     */
     loaderClose({ commit }) {
       commit('CHANGE_LOADER_STATUS', false)
     },
+    /**
+     * 开滚动条
+     */
   },
-  modules: {},
+  modules: {
+    // home
+  },
   getters: {
     nav: state => state.nav,
     loader_status: state => state.loader.status,
