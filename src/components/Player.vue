@@ -9,7 +9,7 @@
         <div class="container">
           <img class="cover" src="https://p2.music.126.net/hti_a0LADoFMBHvOBwAtRA==/1369991500930171.jpg?param=224y224" />
           <div class="track-info">
-            <div class="name">烟火里的尘埃</div>
+            <div class="name">烟火里的尘埃 00000</div>
             <div class="artist">华晨宇</div>
           </div>
         </div>
