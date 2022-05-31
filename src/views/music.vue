@@ -8,7 +8,7 @@
         <div class="info">
           <h2 class="title">我的歌单</h2>
           <p class="source">来自某易云音乐</p>
-          <p class="date">最后更新于 2022年05月30日 · 100 首歌</p>
+          <p class="date">最后更新于 {{ now }} · 100 首歌</p>
           <p class="description">我随便点的</p>
 
           <div class="contro">
@@ -38,7 +38,11 @@
   </main>
 </template>
 
-<script setup></script>
+<script setup>
+import { timeOfNianYueRi } from '../utils'
+
+const now = timeOfNianYueRi()
+</script>
 
 <style lang="scss" scoped>
 main {

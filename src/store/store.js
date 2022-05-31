@@ -1,7 +1,12 @@
 import { createStore } from 'vuex'
 // import home from './modules/home'
+import music from './modules/music'
 
 export default createStore({
+  modules: {
+    music,
+    // home
+  },
   state: {
     scroll: {
       show: true,
@@ -63,9 +68,6 @@ export default createStore({
     /**
      * 开滚动条
      */
-  },
-  modules: {
-    // home
   },
   getters: {
     nav: state => state.nav,
