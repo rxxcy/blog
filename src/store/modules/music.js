@@ -1,16 +1,16 @@
 const music = {
   state: () => ({
     list: [],
-    show: false,
+    show: true,
     pause: false,
   }),
   mutations: {
     SHOW_PLAYER(state, value) {
-      if ((state.show = value)) return
+      if (state.show == value) return
       state.show = value
     },
     PAUSE_PLAYER(state, value) {
-      if ((state.show = value)) return
+      if (state.show == value) return
       state.pause = value
     },
   },
@@ -22,7 +22,7 @@ const music = {
       console.log('这里')
     },
     showPlayer({ commit }) {
-      console.log('开启')
+      console.log('开启...')
       commit('SHOW_PLAYER', true)
     },
     hiddenPlayer({ commit }) {

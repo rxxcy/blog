@@ -1,72 +1,108 @@
 <template>
-  <div class="player">
-    <div class="progress">
-      <div class="formerly"></div>
-      <div class="qiu"></div>
-    </div>
-    <div class="panel">
-      <div class="playing">
-        <div class="container">
-          <img class="cover" src="https://p2.music.126.net/hti_a0LADoFMBHvOBwAtRA==/1369991500930171.jpg?param=224y224" />
-          <div class="track-info">
-            <div class="name">烟火里的尘埃 00000</div>
-            <div class="artist">华晨宇</div>
+  <section v-if="!first">
+    <transition name="slide-up">
+      <div v-show="show" class="player">
+        <div class="progress">
+          <!-- <div class="container"> -->
+          <slider
+            :tooltip="true"
+            tooltipText="%v"
+            :formatTooltip="formatTooltip"
+            v-model="du"
+            color="#ff6900"
+            :height="4"
+            track-color="#e9e9e9"
+          />
+          <!-- </div> -->
+          <!-- <div class="formerly"></div> -->
+          <!-- <div class="ball" @touchstart="touchstart" @touchmove="touchstart"></div> -->
+        </div>
+        <div class="panel">
+          <div class="playing">
+            <div class="container">
+              <img class="cover" src="https://p2.music.126.net/hti_a0LADoFMBHvOBwAtRA==/1369991500930171.jpg?param=224y224" />
+              <div class="track-info">
+                <div class="name">烟火里的尘埃</div>
+                <div class="artist">
+                  <span>华晨宇</span>
+                  <time class="time">01:07/05:09</time>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="controls">
+            <button class="btn">
+              <img src="../assets/images/last.png" />
+            </button>
+            <button class="btn pause">
+              <!-- <img class="pause-img" src="../assets/images/play.png" /> -->
+              <img class="pause-img" src="../assets/images/pause.png" />
+            </button>
+            <button class="btn">
+              <img src="../assets/images/next.png" />
+            </button>
+          </div>
+          <div class="volumes">
+            <button class="btn loop" @click="handlerChnageLoop">
+              <img class="loop-img" v-show="loop" src="../assets/images/loop.png" />
+              <img class="loop-img" v-show="!loop" src="../assets/images/random.png" />
+            </button>
+            <button class="btn volume" @click="handlerMute">
+              <img class="volume-img" v-show="mute" src="../assets/images/volume.png" />
+              <img class="volume-img" v-show="!mute" src="../assets/images/mute.png" />
+            </button>
+            <div class="volumes-bar">
+              <div class="tiao"></div>
+              <div class="ball"></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="controls">
-        <button class="btn">
-          <img src="../assets/images/last.png" />
-        </button>
-        <button class="btn pause">
-          <!-- <img class="pause-img" src="../assets/images/play.png" /> -->
-          <img class="pause-img" src="../assets/images/pause.png" />
-        </button>
-        <button class="btn">
-          <img src="../assets/images/next.png" />
-        </button>
-      </div>
-      <div class="volumes">
-        <button class="btn loop" @click="handlerChnageLoop">
-          <img class="loop-img" v-show="loop" src="../assets/images/loop.png" />
-          <img class="loop-img" v-show="!loop" src="../assets/images/random.png" />
-        </button>
-        <button class="btn volume" @click="handlerMute">
-          <img class="volume-img" v-show="mute" src="../assets/images/volume.png" />
-          <img class="volume-img" v-show="!mute" src="../assets/images/mute.png" />
-        </button>
-        <div class="volumes-bar">
-          <div class="tiao"></div>
-          <div class="ball"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+    </transition>
+  </section>
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+/**
+ * 首次 v-if
+ *  二次 v-show
+ */
+import slider from 'vue3-slider'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
-const show = store.state.music.show
+const show = computed(() => store.state.music.show)
 
-const first = ref(true)
+const first = ref(false)
 const loop = ref(true)
 const mute = ref(true)
+
+const du = ref(50)
 
 const last_volume = ref(0)
 
 watch(
-  () => show,
-  () => console.log('变了')
+  () => show.value,
+  () => {
+    if (show.value && first.value) {
+      first.value = false
+    }
+  }
 )
 
 onMounted(() => {
-  console.log('show', show)
-  setTimeout(() => {
-    store.dispatch('showPlayer')
-  }, 1000)
+  // console.log('show', show)
+  // setTimeout(() => {
+  // store.dispatch('showPlayer')
+  // }, 1000)
 })
+
+const touchstart = e => console.log(e)
+
+const formatTooltip = e => {
+  // console.log('e', e)
+  return `${e}`
+}
 
 const handlerChnageLoop = () => (loop.value = !loop.value)
 
@@ -94,35 +130,32 @@ const handlerMute = () => {
   z-index: $loder-player-z-index;
   user-select: none;
   .progress {
-    margin-top: -4px;
+    margin-top: -6px;
     margin-bottom: -6px;
     width: 100%;
-    height: 2px;
-    background-color: hsl(0deg 0% 50% / 18%);
+    // height: 2px;
+    // background-color: #e9e9e9;
     position: relative;
     &:hover > .ball {
       background-color: $orange;
     }
-    .formerly {
-      position: absolute;
-      width: 50%;
-      height: 100%;
-      background-color: $orange;
-      border-radius: 10px;
-    }
-    .ball {
-      background-color: #000;
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      transform: translate(-50%, -50%);
-      top: 50%;
-      left: 50%;
-      transition: left 0s ease 0s;
-      border-radius: 1em;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+    // .container {
+    //   width: 100%;
+    //   border-radius: 10px;
+    // }
+    // .ball {
+    //   background-color: transparent;
+    //   position: absolute;
+    //   width: 12px;
+    //   height: 12px;
+    //   transform: translate(-50%, -50%);
+    //   top: 50%;
+    //   left: 50%;
+    //   transition: left 0s ease 0s;
+    //   border-radius: 1em;
+    //   cursor: pointer;
+    //   transition: background 0.3s;
+    // }
   }
 
   .panel {
