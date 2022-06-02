@@ -8,7 +8,7 @@
         <div class="info">
           <h2 class="title">我的歌单</h2>
           <p class="source">来自某易云音乐</p>
-          <p class="date">最后更新于 {{ now }} · 100 首歌</p>
+          <p class="date">最后更新于 {{ now }} · {{ list.length || 0 }} 首歌</p>
           <p class="description">我随便点的</p>
 
           <div class="contro">
@@ -18,14 +18,14 @@
         </div>
       </div>
       <div class="track-list">
-        <div v-for="item in 20" class="track">
+        <div v-for="item in list" class="track">
           <!-- <div> -->
           <img class="cover" src="https://p1.music.126.net/UsSAd3Bdf77DjhCuTSEvUw==/109951163077613693.jpg?param=512y512" />
           <!-- </div> -->
           <div class="info">
             <div class="container">
-              <h2 class="title">烟火里的尘埃</h2>
-              <p class="artist">华晨宇</p>
+              <h2 class="title" @click="handlerPlayerMusic(item)">{{ item.title }}</h2>
+              <p class="artist">{{ item.author }}</p>
             </div>
             <div class="blank"></div>
           </div>
@@ -33,15 +33,45 @@
           <!-- <div class="actions"></div> -->
           <div class="time">4:03</div>
         </div>
+
+        <Below :message="message" />
       </div>
     </div>
   </main>
 </template>
 
 <script setup>
+import axios from 'axios'
+import { onMounted, ref } from 'vue'
+import Below from '../components/Below.vue'
 import { timeOfNianYueRi } from '../utils'
 
+const list = ref([])
 const now = timeOfNianYueRi()
+const message = ref('加载中')
+
+onMounted(async () => {
+  const { data } = await axios({
+    url: 'https://api.i-meto.com/meting/api',
+    method: 'get',
+    params: {
+      server: 'netease',
+      type: 'playlist',
+      id: '928459454',
+      r: Math.random(),
+    },
+  })
+  if (data.length > 0) {
+    list.value = data
+    message.value = '到底啦'
+  } else {
+    message.value = '啥也没有'
+  }
+})
+
+const handlerPlayerMusic = ({ url }) => {
+  console.log('url', url)
+}
 </script>
 
 <style lang="scss" scoped>

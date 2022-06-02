@@ -1,7 +1,7 @@
 <template>
   <section v-if="!first">
     <transition name="slide-up">
-      <div v-show="show" class="player">
+      <div v-show="enabled" class="player">
         <div class="progress">
           <!-- <div class="container"> -->
           <slider
@@ -52,8 +52,17 @@
               <img class="volume-img" v-show="!mute" src="../assets/images/mute.png" />
             </button>
             <div class="volumes-bar">
-              <div class="tiao"></div>
-              <div class="ball"></div>
+              <slider
+                :tooltip="true"
+                tooltipText="%v"
+                :formatTooltip="formatTooltip"
+                v-model="du"
+                color="#ff6900"
+                :height="4"
+                track-color="#e9e9e9"
+              />
+              <!-- <div class="tiao"></div>
+              <div class="ball"></div> -->
             </div>
           </div>
         </div>
@@ -71,7 +80,7 @@ import slider from 'vue3-slider'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
-const show = computed(() => store.state.music.show)
+const enabled = computed(() => store.state.player.enabled)
 
 const first = ref(false)
 const loop = ref(true)
@@ -82,9 +91,9 @@ const du = ref(50)
 const last_volume = ref(0)
 
 watch(
-  () => show.value,
+  () => enabled.value,
   () => {
-    if (show.value && first.value) {
+    if (enabled.value && first.value) {
       first.value = false
     }
   }
@@ -100,7 +109,6 @@ onMounted(() => {
 const touchstart = e => console.log(e)
 
 const formatTooltip = e => {
-  // console.log('e', e)
   return `${e}`
 }
 
@@ -274,25 +282,28 @@ const handlerMute = () => {
         background-color: hsl(0deg 0% 50% / 18%);
         border-radius: 10px;
         position: relative;
-        .tiao {
-          position: absolute;
-          width: 50%;
-          height: 100%;
-          background-color: $orange;
-          border-radius: 10px;
+        :deep(.vue3-slider) {
+          margin: 0;
         }
-        .ball {
-          position: absolute;
-          width: 12px;
-          height: 12px;
-          transform: translate(-50%, -50%);
-          top: 50%;
-          left: 50%;
-          transition: left 0s ease 0s;
-          border-radius: 1em;
-          cursor: pointer;
-          transition: background 0.3s;
-        }
+        // .tiao {
+        //   position: absolute;
+        //   width: 50%;
+        //   height: 100%;
+        //   background-color: $orange;
+        //   border-radius: 10px;
+        // }
+        // .ball {
+        //   position: absolute;
+        //   width: 12px;
+        //   height: 12px;
+        //   transform: translate(-50%, -50%);
+        //   top: 50%;
+        //   left: 50%;
+        //   transition: left 0s ease 0s;
+        //   border-radius: 1em;
+        //   cursor: pointer;
+        //   transition: background 0.3s;
+        // }
         &:hover > .ball {
           background-color: $orange;
         }

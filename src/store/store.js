@@ -1,10 +1,10 @@
 import { createStore } from 'vuex'
 // import home from './modules/home'
-import music from './modules/music'
+import player from './modules/player'
 
 export default createStore({
   modules: {
-    music,
+    player,
     // home
   },
   state: {
