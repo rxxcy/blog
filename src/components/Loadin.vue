@@ -47,6 +47,7 @@ watch(
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: $loader-z-index;
   .img {
     z-index: $loder-img-z-index;
     img {

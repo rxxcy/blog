@@ -21,7 +21,7 @@ export default createStore({
       { id: 3, name: '相册', en: 'dcim', path: '/dcim' },
       { id: 4, name: '笔记', en: 'note', path: '/note' },
       { id: 6, name: '音乐', en: 'music', path: '/music' },
-      { id: 7, name: '战绩', en: 'fan', path: '/fan' },
+      { id: 7, name: '追番', en: 'fan', path: '/fan' },
     ],
     me: {
       nick: '若许闲乘月',

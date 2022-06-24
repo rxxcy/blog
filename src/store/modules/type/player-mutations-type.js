@@ -1,4 +1,8 @@
 /**
+ * 播放
+ */
+export const PLAYER = 'PLAYER'
+/**
  * 开启、关闭播放器
  */
 export const ENABLED_PLAYER = 'ENABLED_PLAYER'

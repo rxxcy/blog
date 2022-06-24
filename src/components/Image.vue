@@ -172,6 +172,7 @@ const handlerZoom = e => {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 99999;
   &::before {
     content: '';
     width: 100vw;
@@ -179,7 +180,8 @@ const handlerZoom = e => {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #e5e5e5;
+    // background-color: #e5e5e5;
+    background-color: #000;
     backdrop-filter: blur(30px);
     z-index: -1;
   }

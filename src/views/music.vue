@@ -8,7 +8,7 @@
         <div class="info">
           <h2 class="title">我的歌单</h2>
           <p class="source">来自某易云音乐</p>
-          <p class="date">最后更新于 {{ now }} · {{ list.length || 0 }} 首歌</p>
+          <p class="date">最后更新于 {{ now }} · {{ tracks.length || 0 }} 首歌</p>
           <p class="description">我随便点的</p>
 
           <div class="contro">
@@ -18,21 +18,7 @@
         </div>
       </div>
       <div class="track-list">
-        <div v-for="item in list" class="track">
-          <!-- <div> -->
-          <img class="cover" src="https://p1.music.126.net/UsSAd3Bdf77DjhCuTSEvUw==/109951163077613693.jpg?param=512y512" />
-          <!-- </div> -->
-          <div class="info">
-            <div class="container">
-              <h2 class="title" @click="handlerPlayerMusic(item)">{{ item.title }}</h2>
-              <p class="artist">{{ item.author }}</p>
-            </div>
-            <div class="blank"></div>
-          </div>
-          <div class="album">烟火里的尘埃</div>
-          <!-- <div class="actions"></div> -->
-          <div class="time">4:03</div>
-        </div>
+        <TrackItem v-for="(track, index) in tracks" :track="track" :key="index" />
 
         <Below :message="message" />
       </div>
@@ -41,36 +27,57 @@
 </template>
 
 <script setup>
-import axios from 'axios'
+import TrackItem from '../components/TrackItem.vue'
+import { useStore } from 'vuex'
+import { search, details } from '../api/music'
 import { onMounted, ref } from 'vue'
 import Below from '../components/Below.vue'
 import { timeOfNianYueRi } from '../utils'
+import { PLAYER } from '../store/modules/type/player-mutations-type'
 
-const list = ref([])
+const store = useStore()
+const tracks = ref([])
+const offset = ref(0)
+const keywords = ref('陈冠希')
 const now = timeOfNianYueRi()
 const message = ref('加载中')
 
-onMounted(async () => {
-  const { data } = await axios({
-    url: 'https://api.i-meto.com/meting/api',
-    method: 'get',
-    params: {
-      server: 'netease',
-      type: 'playlist',
-      id: '928459454',
-      r: Math.random(),
-    },
-  })
-  if (data.length > 0) {
-    list.value = data
-    message.value = '到底啦'
-  } else {
-    message.value = '啥也没有'
-  }
+onMounted(() => {
+  // const { playlists } = data.result
+  // if (playlists) {
+  //   console.log('playlists', playlists)
+  //   list.value = playlists
+  //   message.value = '到底啦'
+  // } else {
+  //   message.value = '啥也没有'
+  // }
+  handlerGetTracks()
 })
 
-const handlerPlayerMusic = ({ url }) => {
-  console.log('url', url)
+const handlerGetTracks = async () => {
+  const { code, result } = await search(keywords.value, offset.value)
+  if (code !== 200) {
+    return false
+  }
+  const songs = result.songs
+  if (!songs || songs.length <= 0) {
+    return false
+  }
+  const ids = []
+  for (const { id } of songs) {
+    ids.push(id)
+  }
+  const tempTracks = await details(ids.join(','))
+  if (tempTracks.code !== 200) {
+    return false
+  }
+  tracks.value = tempTracks.songs
+}
+
+const handlerPlayerMusic = row => {
+  const url = 'https://lab.rxxcy.com/mzdhl.m4a'
+  // console.log('row', row)
+  store.dispatch(PLAYER, [url])
 }
 </script>
 
@@ -156,61 +163,6 @@ main {
 
     .track-list {
       margin-bottom: 100px;
-      .track {
-        display: flex;
-        align-items: center;
-        padding: 8px;
-        border-radius: 12px;
-        user-select: none;
-        &:hover {
-          background-color: #f5f5f7;
-        }
-        .cover {
-          border-radius: 8px;
-          height: 46px;
-          width: 46px;
-          margin-right: 20px;
-          border: 1px solid rgba(0, 0, 0, 0.04);
-          cursor: pointer;
-        }
-        .info {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          .container {
-            .title {
-              font-size: 18px;
-              font-weight: 200;
-              cursor: default;
-              padding-right: 16px;
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 1;
-              overflow: hidden;
-              word-break: break-all;
-              cursor: pointer;
-            }
-            .artist {
-              margin-top: 2px;
-              font-size: 13px;
-              opacity: 0.68;
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 1;
-              overflow: hidden;
-            }
-            .blank {
-              flex: 1;
-            }
-          }
-        }
-        .album {
-          flex: 1;
-          padding: 8px;
-          border-radius: 12px;
-          user-select: none;
-        }
-      }
     }
   }
 }

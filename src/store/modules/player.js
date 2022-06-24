@@ -1,11 +1,11 @@
 // (https://github.com/goldfire/howler.js)
-import { Howler } from 'howler'
-import { ENABLED_PLAYER, PAUSE_PLAYER } from './type/player-mutations-type'
+import { Howl } from 'howler'
+import { PLAYER, ENABLED_PLAYER, PAUSE_PLAYER } from './type/player-mutations-type'
 
 const player = {
   state: () => ({
     // 显示
-    enabled: true,
+    enabled: false,
     /**
      * 播放器
      */
@@ -28,13 +28,32 @@ const player = {
       state.enabled = value
     },
     [PAUSE_PLAYER](state, value) {
-      if (state.enabled == value) return
-      state.pause = value
+      if (value === false) {
+        /**
+         * 暂停操作
+         */
+      }
+      if (state.howler) {
+        console.log('已实例化')
+      } else {
+        state.howler = new Howl({
+          src: [...value],
+          html5: true,
+          preload: true,
+        })
+        state.howler.play()
+      }
     },
   },
   actions: {
-    pausePlayer({ commit }) {
-      commit(PAUSE_PLAYER, true)
+    /**
+     * 1. 首次播放实例化 播放器
+     * 2. 暂停 继续
+     * 3. 切歌
+     * 4. 关闭播放器
+     */
+    [PLAYER]({ commit }, data) {
+      commit(PAUSE_PLAYER, data)
     },
     continuePlayer({ commit }) {
       commit(PAUSE_PLAYER, false)

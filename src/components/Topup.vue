@@ -10,7 +10,7 @@ import { onMounted, ref } from 'vue'
 const display = ref('none')
 let timer
 const handler2up = () => {
-  console.log(`顶你个肺 ${Math.random()}`)
+  // console.log(`顶你个肺 ${Math.random()}`)
   timer = setInterval(function () {
     let backTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
     let speedTop = backTop / 5
@@ -56,7 +56,7 @@ $bgc: #0693e3;
     opacity: 1;
     color: #fff;
     background-color: $bgc;
-    animation: skk-up 1.7s linear infinite;
+    // animation: skk-up 1.7s linear infinite;
   }
   p {
     line-height: 40px;

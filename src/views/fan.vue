@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="fan">zhanji</div>
+    <div class="fan">fan</div>
   </main>
 </template>
 

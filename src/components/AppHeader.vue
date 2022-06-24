@@ -66,8 +66,8 @@ a {
     content: '🎧';
   }
   &[name='fan']::before {
-    // content: '📺';
-    content: '⚔️';
+    content: '📺';
+    // content: '⚔️';
   }
 }
 .router-link-active {

@@ -12,7 +12,7 @@
     </nav>
     <section>
       <div class="note">
-        <div class="item" v-for="i in 50" :key="i">
+        <div class="item" v-for="i in 2" :key="i">
           <h2 class="title">
             <a :href="'/#/note/' + i">Re: 从零开始的黑魔法之旅 {{ i }}</a>
           </h2>
@@ -51,6 +51,7 @@ const setActiveCate = () => {
 const handlerChnageActiveCategory = id => {
   if (id == active.value) return
   active.value = id
+  message.value = '加载中'
 }
 </script>
 
