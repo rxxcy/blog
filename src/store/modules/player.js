@@ -1,11 +1,11 @@
 // (https://github.com/goldfire/howler.js)
 import { Howl } from 'howler'
-import { PLAYER, ENABLED_PLAYER, PAUSE_PLAYER } from './type/player-mutations-type'
+import { PLAYER, ENABLED_PLAYER, PAUSE_PLAYER, NEXT_TRACK, LAST_TRACK } from './type/player-mutations-type'
 
 const player = {
   state: () => ({
     // 显示
-    enabled: false,
+    enabled: true,
     /**
      * 播放器
      */
@@ -15,6 +15,11 @@ const player = {
     volume: 0, // 音量 0-1
     volumeBeforeMuted: 0, // 静音前的音量
     muta: false, // 静音
+
+    /**
+     * 正在播放的
+     */
+    active: {},
 
     /**
      * 播放列表

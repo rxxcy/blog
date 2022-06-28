@@ -51,7 +51,7 @@ const setActiveCate = () => {
 const handlerChnageActiveCategory = id => {
   if (id == active.value) return
   active.value = id
-  message.value = '加载中'
+  message.value = '到底啦'
 }
 </script>
 

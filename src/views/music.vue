@@ -17,8 +17,11 @@
           </div>
         </div>
       </div>
+      <div class="search">
+        <input type="text" v-model="keywords" class="keywords" :placeholder="placeholder" @keyup.enter="handlerSearchTracks" />
+      </div>
       <div class="track-list">
-        <TrackItem v-for="(track, index) in tracks" :track="track" :key="index" />
+        <TrackItem v-for="(track, index) in tracks" :track="track" :key="index" @playTrack="handlerPlayerTrack" />
 
         <Below :message="message" />
       </div>
@@ -41,18 +44,19 @@ const offset = ref(0)
 const keywords = ref('陈冠希')
 const now = timeOfNianYueRi()
 const message = ref('加载中')
+const placeholder = ref('来点什么')
 
 onMounted(() => {
-  // const { playlists } = data.result
-  // if (playlists) {
-  //   console.log('playlists', playlists)
-  //   list.value = playlists
-  //   message.value = '到底啦'
-  // } else {
-  //   message.value = '啥也没有'
-  // }
   handlerGetTracks()
 })
+
+const handlerSearchTracks = () => {
+  if (!keywords.value) {
+    placeholder.value = '关键字不能为空啊 😒'
+    return false
+  }
+  handlerSearchTracks()
+}
 
 const handlerGetTracks = async () => {
   const { code, result } = await search(keywords.value, offset.value)
@@ -67,6 +71,7 @@ const handlerGetTracks = async () => {
   for (const { id } of songs) {
     ids.push(id)
   }
+  console.log('ids', ids)
   const tempTracks = await details(ids.join(','))
   if (tempTracks.code !== 200) {
     return false
@@ -74,10 +79,11 @@ const handlerGetTracks = async () => {
   tracks.value = tempTracks.songs
 }
 
-const handlerPlayerMusic = row => {
+const handlerPlayerTrack = row => {
   const url = 'https://lab.rxxcy.com/mzdhl.m4a'
   // console.log('row', row)
-  store.dispatch(PLAYER, [url])
+  // store.dispatch(PLAYER, [url])
+  store.dispatch(PLAYER, [`https://music.163.com/song/media/outer/url?id=${row.id}`])
 }
 </script>
 
@@ -93,7 +99,7 @@ main {
     .jumbotron {
       display: flex;
       padding-top: 70px;
-      margin-bottom: 70px;
+      margin-bottom: 35px;
       .cover {
         width: 290px;
         height: 290px;
@@ -158,6 +164,25 @@ main {
             cursor: pointer;
           }
         }
+      }
+    }
+
+    .search {
+      margin-bottom: 35px;
+      text-align: center;
+      // visibility: hidden;
+      opacity: 0;
+      transition: all 0.3s;
+      &:hover {
+        opacity: 1;
+      }
+      .keywords {
+        width: 270px;
+        background-color: rgb(227, 227, 227);
+        border-radius: 1em;
+        padding: 0.5em 0.8em;
+        border: none;
+        text-align: center;
       }
     }
 

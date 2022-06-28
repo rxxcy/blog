@@ -5,8 +5,13 @@
     <!-- </div> -->
     <div class="info">
       <div class="container">
-        <h2 class="title" @click="handlerPlayerMusic(track)">{{ track.name }}</h2>
-        <p class="artist">{{ track.author }}</p>
+        <h2 class="title" @click="handlerPlayerMusic(track)">
+          <div class="name">{{ track.name }}</div>
+          <div class="blank"></div>
+        </h2>
+        <p class="artist">
+          <span v-for="(artist, index) in track.ar" :kye="index">{{ artist.name }}</span>
+        </p>
       </div>
       <div class="blank"></div>
     </div>
@@ -18,6 +23,7 @@
 
 <script setup>
 import { computed, onMounted, /*getCurrentInstance,*/ reactive } from 'vue'
+import { PLAYER } from '../store/modules/type/player-mutations-type'
 
 const props = defineProps({
   track: {
@@ -25,6 +31,8 @@ const props = defineProps({
     default: () => {},
   },
 })
+
+const emits = defineEmits(['playTrack'])
 
 // const { proxy } = getCurrentInstance()
 const track = reactive({})
@@ -34,10 +42,11 @@ onMounted(() => {
   track.id = props.track.id
   track.name = props.track.name
   track.dt = props.track.dt
+  track.ar = props.track.ar
   track.album = props.track.album
   track.al = props.track.al
   track.track = props.track.track
-  console.log('props.track.al', props.track.al)
+  // console.log('props.track.al', props.track.al)
 })
 
 const time = computed(() => {
@@ -53,8 +62,12 @@ const cover = computed(() => {
     track?.al?.picUrl ?? track?.album?.picUrl ?? 'https://p2.music.126.net/UeTuwE7pvjBpypWLudqukA==/3132508627578625.jpg'
   return image + '?param=224y224'
 })
+const artist = computed(() => track?.ar || [])
 
-const handlerPlayerMusic = row => {}
+const handlerPlayerMusic = row => {
+  emits('playTrack', row)
+  // console.log(row)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -81,16 +94,19 @@ const handlerPlayerMusic = row => {}
     flex-direction: column;
     .container {
       .title {
+        display: flex;
         font-size: 18px;
         font-weight: 200;
         cursor: default;
         padding-right: 16px;
-        display: -webkit-box;
+        // display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
         overflow: hidden;
         word-break: break-all;
-        cursor: pointer;
+        .name {
+          cursor: pointer;
+        }
       }
       .artist {
         margin-top: 2px;
@@ -100,6 +116,9 @@ const handlerPlayerMusic = row => {}
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
         overflow: hidden;
+        span {
+          margin-right: 0.5em;
+        }
       }
       .blank {
         flex: 1;

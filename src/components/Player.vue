@@ -56,7 +56,7 @@
                 :tooltip="true"
                 tooltipText="%v"
                 :formatTooltip="formatTooltip"
-                v-model="du"
+                v-model="volume"
                 color="#ff6900"
                 :height="4"
                 track-color="#e9e9e9"
@@ -82,11 +82,17 @@ import { useStore } from 'vuex'
 const store = useStore()
 const enabled = computed(() => store.state.player.enabled)
 
+/**
+ * 播放器
+ */
+const howl = computed(() => store.state.howl)
+
 const first = ref(false)
 const loop = ref(true)
 const mute = ref(true)
 
-const du = ref(50)
+const du = ref(0)
+const volume = ref(50)
 
 const last_volume = ref(0)
 
