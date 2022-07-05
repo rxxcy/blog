@@ -5,11 +5,11 @@ import { PLAYER, ENABLED_PLAYER, PAUSE_PLAYER, NEXT_TRACK, LAST_TRACK } from './
 const player = {
   state: () => ({
     // 显示
-    enabled: true,
+    enabled: false,
     /**
      * 播放器
      */
-    howler: null, // 播放器实例
+    howl: null, // 播放器实例
     pause: false, // 是否正在播放
     progress: 0, // 当前播放进度
     volume: 0, // 音量 0-1
@@ -38,15 +38,15 @@ const player = {
          * 暂停操作
          */
       }
-      if (state.howler) {
+      if (state.howl) {
         console.log('已实例化')
       } else {
-        state.howler = new Howl({
+        state.howl = new Howl({
           src: [...value],
           html5: true,
           preload: true,
         })
-        state.howler.play()
+        state.howl.play()
       }
     },
   },

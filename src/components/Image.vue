@@ -180,9 +180,9 @@ const handlerZoom = e => {
     position: fixed;
     top: 0;
     left: 0;
-    // background-color: #e5e5e5;
-    background-color: #000;
-    backdrop-filter: blur(30px);
+    background-color: #e5e5e5;
+    // background-color: #000;
+    backdrop-filter: blur(5px);
     z-index: -1;
   }
   img {

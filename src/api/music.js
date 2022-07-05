@@ -8,7 +8,7 @@ const REAL_IP = '39.128.4.38'
 
 export const search = (keywords, offset = 0) => {
   return axios({
-    url: '/api/search',
+    url: '/search',
     method: 'get',
     params: {
       keywords,
@@ -21,7 +21,7 @@ export const search = (keywords, offset = 0) => {
 
 export const details = ids => {
   return axios({
-    url: '/api/song/detail',
+    url: '/song/detail',
     method: 'get',
     params: {
       ids,

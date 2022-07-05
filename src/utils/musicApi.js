@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const baseURL = 'https://music.qier222.com'
+// const baseURL = 'https://music.qier222.com/api'
+const baseURL = 'https://api.music.imsyy.top'
 
 const instance = axios.create({
   baseURL,
