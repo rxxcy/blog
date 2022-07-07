@@ -9,10 +9,10 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
-const store = useStore()
-const nav = computed(() => store.getters.nav)
+import { reactive } from 'vue'
+import { SystemStore } from '../store/system'
+const store = SystemStore()
+const nav = reactive(store.nav)
 </script>
 
 <style lang="scss" scoped>

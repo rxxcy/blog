@@ -23,7 +23,7 @@
 
 <script setup>
 import { computed, onMounted, /*getCurrentInstance,*/ reactive } from 'vue'
-import { PLAYER } from '../store/modules/type/player-mutations-type'
+// import { PLAYER } from '../store/modules/type/player-mutations-type'
 
 const props = defineProps({
   track: {

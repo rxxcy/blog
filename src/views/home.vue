@@ -29,11 +29,15 @@
 </template>
 
 <script setup>
-import { computed, watch } from 'vue'
-import { useStore } from 'vuex'
+import { reactive } from 'vue'
+import { HomeStore } from '../store/home'
 
-const store = useStore()
-const me = computed(() => store.state.me)
+import { player } from '../utils/player'
+
+console.log('player', player)
+
+const homeStore = HomeStore()
+const me = reactive(homeStore.me)
 </script>
 
 <style lang="scss" scoped>

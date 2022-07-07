@@ -9,18 +9,19 @@
 </template>
 
 <script setup>
-import { nextTick, reactive, ref, watch } from 'vue'
+import { nextTick, ref, watch, reactive } from 'vue'
 import { useRoute } from 'vue-router'
-import { useStore } from 'vuex'
-const store = useStore()
+// import { useStore } from 'vuex'
+import { SystemStore } from '../store/system'
+const store = SystemStore()
 const router = useRoute()
-const loader = reactive(store.state.loader)
+const loader = reactive(store.loader)
 const gwei = ref(0)
 
 let setTimeOut = false
 
 watch(
-  () => store.state.loader.status,
+  () => store.loader.status,
   n => {
     if (n === true) {
       setTimeOut = setInterval(() => {

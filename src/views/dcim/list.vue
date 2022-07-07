@@ -29,13 +29,14 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted } from 'vue'
-import { useStore } from 'vuex'
+import { ref, onMounted, reactive } from 'vue'
+// import { useStore } from 'vuex'
+import { SystemStore } from '../../store/system'
 import { useRoute } from 'vue-router'
 import skkImage from '../../components/Image.vue'
 
-const store = useStore()
-const category = computed(() => store.state.dcim.category)
+const systemStore = SystemStore()
+const category = reactive(systemStore.dcim.category)
 const active = ref(0)
 
 onMounted(() => {

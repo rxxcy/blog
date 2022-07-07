@@ -29,11 +29,12 @@
 
 <script setup>
 import Below from '../../components/Below.vue'
-import { computed, onMounted, ref } from 'vue'
-import { useStore } from 'vuex'
+import { onMounted, reactive, ref } from 'vue'
+// import { useStore } from 'vuex'
+import { SystemStore } from '../../store/system'
 import { useRoute } from 'vue-router'
-const store = useStore()
-const category = computed(() => store.state.note.category)
+const store = SystemStore()
+const category = reactive(store.note.category)
 const active = ref(0)
 const message = ref('到底啦')
 

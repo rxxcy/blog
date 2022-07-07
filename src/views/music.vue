@@ -31,14 +31,14 @@
 
 <script setup>
 import TrackItem from '../components/TrackItem.vue'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
 import { search, details } from '../api/music'
 import { onMounted, ref } from 'vue'
 import Below from '../components/Below.vue'
 import { timeOfNianYueRi } from '../utils'
-import { PLAYER } from '../store/modules/type/player-mutations-type'
+// import { PLAYER } from '../store/modules/type/player-mutations-type'
 
-const store = useStore()
+// const store = useStore()
 const tracks = ref([])
 const offset = ref(0)
 const keywords = ref('陈冠希')
@@ -71,7 +71,7 @@ const handlerGetTracks = async () => {
   for (const { id } of songs) {
     ids.push(id)
   }
-  console.log('ids', ids)
+  // console.log('ids', ids)
   const tempTracks = await details(ids.join(','))
   if (tempTracks.code !== 200) {
     return false
@@ -81,9 +81,10 @@ const handlerGetTracks = async () => {
 
 const handlerPlayerTrack = row => {
   const url = 'https://lab.rxxcy.com/mzdhl.m4a'
+  // const url = `https://music.163.com/song/media/outer/url?id=${row.id}`
   // console.log('row', row)
   // store.dispatch(PLAYER, [url])
-  store.dispatch(PLAYER, [`https://music.163.com/song/media/outer/url?id=${row.id}`])
+  // store.dispatch(PLAYER, [`https://music.163.com/song/media/outer/url?id=${row.id}`])
 }
 </script>
 
