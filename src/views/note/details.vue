@@ -43,9 +43,10 @@
 <script setup>
 import Below from '../../components/Below.vue'
 import { onMounted, reactive, ref } from 'vue'
-import { useStore } from 'vuex'
-const store = useStore()
-const me = reactive(store.state.me)
+// import { useStore } from 'vuex'
+import { useHomeStore } from '../../store/home'
+const store = useHomeStore()
+const me = reactive(store.me)
 const code = `
 // Copyright 2020 Alpha Cephei Inc.
 //

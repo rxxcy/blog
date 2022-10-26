@@ -1,4 +1,4 @@
-import { Howl } from 'howler'
+import { Howl, Howler } from 'howler'
 
 class Player {
   constructor() {
@@ -11,12 +11,34 @@ class Player {
      * stop 停止
      */
     this.status = 'stop'
+    /**
+     * TODO:
+     * 播放列表
+     */
+    this.trackes = []
+  }
+
+  /**
+   * 播放
+   */
+  play(source) {
+    Howler.unload()
+    this.howl = new Howl({
+      src: [source],
+      html5: true,
+      preload: true,
+      format: ['mp3', 'flac'],
+      onend: () => console.log('播放器初始化成功'),
+    })
+    this.howl.on('loaderror', this.howlLoadError)
+
+    this.howl.play()
   }
 
   /**
    * 继续 & 暂停
    */
-  play() {}
+  pause() {}
 
   /**
    * 下一首
@@ -37,6 +59,15 @@ class Player {
    * 格式化歌词
    */
   formatLyric() {}
+
+  /**
+   * howl 加载失败
+   * https://developer.mozilla.org/en-US/docs/Web/API/MediaError/code
+   * code 3: MEDIA_ERR_DECODE
+   */
+  howlLoadError(_, code) {
+    console.log(`音乐资源加载失败: ${code}`)
+  }
 }
 
 export const player = new Player()

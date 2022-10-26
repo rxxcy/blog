@@ -1,4 +1,4 @@
-import axios from '../utils/musicApi'
+import axios from '../utils/music-request'
 
 /**
  * 搜索歌曲
@@ -6,7 +6,7 @@ import axios from '../utils/musicApi'
 const TRACKS = 1
 const REAL_IP = '39.128.4.38'
 
-export const search = (keywords, offset = 0) => {
+export const search = (keywords, offset = 0, limit = 30) => {
   return axios({
     url: '/search',
     method: 'get',
@@ -14,7 +14,8 @@ export const search = (keywords, offset = 0) => {
       keywords,
       type: TRACKS,
       offset,
-      realIP: REAL_IP,
+      limit,
+      // realIP: REAL_IP,
     },
   })
 }
@@ -25,7 +26,7 @@ export const details = ids => {
     method: 'get',
     params: {
       ids,
-      realIP: REAL_IP,
+      // realIP: REAL_IP,
     },
   })
 }

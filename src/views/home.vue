@@ -9,7 +9,9 @@
       <p>九零后，云南，现居昆明。</p>
       <p>
         一九年毕业，云南财经大学，计算机科学与技术。
-        <small class="doge">精通JavaScript,Rust,Golang,PHP,Python,Java等编程语言名称单词拼写.</small>
+        <small class="doge"
+          >精通JavaScript,Rust,Golang,PHP,Python,Java等编程语言名称单词拼写.</small
+        >
       </p>
       <p>
         那河畔的金柳，是夕阳中的新娘；波光里的艳影，在我的心头荡漾。软泥上的青荇，油油的在水底招摇；在康河的柔波里，我甘心做一条水草！
@@ -30,13 +32,13 @@
 
 <script setup>
 import { reactive } from 'vue'
-import { HomeStore } from '../store/home'
+import { useHomeStore } from '../store/home'
 
 import { player } from '../utils/player'
 
 console.log('player', player)
 
-const homeStore = HomeStore()
+const homeStore = useHomeStore()
 const me = reactive(homeStore.me)
 </script>
 

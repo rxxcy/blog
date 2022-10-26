@@ -24,65 +24,131 @@
         <TrackItem v-for="(track, index) in tracks" :track="track" :key="index" @playTrack="handlerPlayerTrack" />
 
         <Below :message="message" />
+
+        <div class="below" ref="below"></div>
       </div>
     </div>
   </main>
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue'
 import TrackItem from '../components/TrackItem.vue'
 // import { useStore } from 'vuex'
 import { search, details } from '../api/music'
-import { onMounted, ref } from 'vue'
 import Below from '../components/Below.vue'
 import { timeOfNianYueRi } from '../utils'
 // import { PLAYER } from '../store/modules/type/player-mutations-type'
 
+import { player } from '../utils/player'
+
 // const store = useStore()
 const tracks = ref([])
-const offset = ref(0)
-const keywords = ref('陈冠希')
+const page = ref(1)
+const limit = ref(20)
+const keywords = ref('华晨宇')
 const now = timeOfNianYueRi()
 const message = ref('加载中')
 const placeholder = ref('来点什么')
+/**
+ * 是否还有下一页
+ */
+const finish = ref(false)
+
+const below = ref(null)
+
+const shake = ref(false)
 
 onMounted(() => {
   handlerGetTracks()
+  loaderMore()
 })
+
+const loaderMore = () => {
+  const dom = below.value
+  const ob = new IntersectionObserver(item => {
+    const ratio = item[0].intersectionRatio
+    if (ratio > 0) {
+      if (finish.value === true) {
+        ob.unobserve(dom)
+        return false
+      }
+      if (shake.value === true) {
+        /**
+         * 防抖
+         */
+        return false
+      } else {
+        page.value += 1
+        handlerGetTracks()
+      }
+    }
+  })
+  ob.observe(dom)
+}
 
 const handlerSearchTracks = () => {
   if (!keywords.value) {
     placeholder.value = '关键字不能为空啊 😒'
     return false
   }
-  handlerSearchTracks()
+  tracks.value = []
+  shake.value = false
+  finish.value = false
+  message.value = '加载中'
+  handlerGetTracks()
 }
 
 const handlerGetTracks = async () => {
-  const { code, result } = await search(keywords.value, offset.value)
+  if (shake.value === true) {
+    return false
+  } else {
+    shake.value = true
+  }
+  const offset = page.value * limit.value
+  const { code, result } = await search(keywords.value, offset, limit.value)
   if (code !== 200) {
+    setFinish()
     return false
   }
   const songs = result.songs
   if (!songs || songs.length <= 0) {
+    setFinish()
     return false
   }
   const ids = []
   for (const { id } of songs) {
     ids.push(id)
   }
-  // console.log('ids', ids)
   const tempTracks = await details(ids.join(','))
   if (tempTracks.code !== 200) {
     return false
   }
-  tracks.value = tempTracks.songs
+  if (page.value <= 1) {
+    tracks.value = tempTracks.songs
+  } else {
+    tracks.value = [...tracks.value, ...tempTracks.songs]
+  }
+  if (songs.length < limit.value) setFinish()
+  shake.value = false
 }
 
-const handlerPlayerTrack = row => {
-  const url = 'https://lab.rxxcy.com/mzdhl.m4a'
-  // const url = `https://music.163.com/song/media/outer/url?id=${row.id}`
-  // console.log('row', row)
+/**
+ * 结束加载
+ */
+const setFinish = () => {
+  finish.value = true
+  message.value = '没有更多了'
+}
+
+/**
+ * 播放
+ */
+const handlerPlayerTrack = ({ id, name }) => {
+  // const url = 'https://lab.rxxcy.com/mzdhl.m4a'
+  const url = `https://music.163.com/song/media/outer/url?id=${id}`
+  window.document.title = `${name}`
+  player.play(url)
   // store.dispatch(PLAYER, [url])
   // store.dispatch(PLAYER, [`https://music.163.com/song/media/outer/url?id=${row.id}`])
 }

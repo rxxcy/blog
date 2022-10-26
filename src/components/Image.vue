@@ -1,5 +1,11 @@
 <template>
-  <img class="image" :style="is_loaded ? '' : style" ref="image" :src="real" @click="handlerPreview" />
+  <img
+    class="image"
+    :style="is_loaded ? '' : style"
+    ref="image"
+    :src="real"
+    @click="handlerPreview"
+  />
   <div v-if="preview_dialog" class="preview" @click="closePreview">
     <!-- <div class="last" @click="handlerLastOne">上</div> -->
     <img ref="preview_image" :style="preview_style" :src="src" />
@@ -8,7 +14,7 @@
 </template>
 
 <script setup>
-// todo 预览切换 下个版本再写了
+// TODO: 预览切换 下个版本再写了
 import { onMounted, reactive, ref } from 'vue'
 import { loaderImage } from '../utils'
 const props = defineProps({
@@ -22,7 +28,8 @@ const props = defineProps({
   },
   error: {
     type: String,
-    default: () => 'https://www.dute.org/placeholder/154x57?fontsize=32&text=加载失败&bgcolor=e5e5e5',
+    default: () =>
+      'https://www.dute.org/placeholder/154x57?fontsize=32&text=加载失败&bgcolor=e5e5e5',
   },
   preview: {
     type: Boolean,

@@ -22,10 +22,10 @@
             <div class="container">
               <img class="cover" src="https://p2.music.126.net/hti_a0LADoFMBHvOBwAtRA==/1369991500930171.jpg?param=224y224" />
               <div class="track-info">
-                <div class="name">烟火里的尘埃</div>
+                <div class="name">烟火里的尘埃 {{ enabled }}</div>
                 <div class="artist">
                   <span>华晨宇</span>
-                  <time class="time">01:07/05:09</time>
+                  <time class="time">1:07/5:09</time>
                 </div>
               </div>
             </div>
@@ -35,8 +35,8 @@
               <img src="../assets/images/last.png" />
             </button>
             <button class="btn pause">
-              <!-- <img class="pause-img" src="../assets/images/play.png" /> -->
-              <img class="pause-img" src="../assets/images/pause.png" />
+              <img class="pause-img" src="../assets/images/play.png" />
+              <!-- <img class="pause-img" src="../assets/images/pause.png" /> -->
             </button>
             <button class="btn">
               <img src="../assets/images/next.png" />
@@ -78,14 +78,17 @@
  */
 import slider from 'vue3-slider'
 import { computed, onMounted, ref, watch } from 'vue'
-import { useStore } from 'vuex'
-const store = useStore()
-const enabled = computed(() => store.state.player.enabled)
+// import { useStore } from 'vuex'
+import { MusicStore } from '../store/music'
+const store = MusicStore()
+const enabled = computed(() => store.enabled)
+
+// console.log(enabled)
 
 /**
  * 播放器
  */
-const howl = computed(() => store.state.howl)
+// const player = computed(() => store.howl)
 
 const first = ref(false)
 const loop = ref(true)
@@ -106,7 +109,6 @@ watch(
 )
 
 onMounted(() => {
-  // console.log('show', show)
   // setTimeout(() => {
   // store.dispatch('showPlayer')
   // }, 1000)
@@ -143,6 +145,7 @@ const handlerMute = () => {
   // background-color: $orange;
   z-index: $loder-player-z-index;
   user-select: none;
+
   .progress {
     margin-top: -6px;
     margin-bottom: -6px;
@@ -150,9 +153,11 @@ const handlerMute = () => {
     // height: 2px;
     // background-color: #e9e9e9;
     position: relative;
+
     &:hover > .ball {
       background-color: $orange;
     }
+
     // .container {
     //   width: 100%;
     //   border-radius: 10px;
@@ -177,12 +182,15 @@ const handlerMute = () => {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     height: 100%;
+
     .playing {
       display: flex;
       align-items: center;
+
       // justify-content: center;
       .container {
         display: flex;
+
         .cover {
           height: 46px;
           border-radius: 5px;
@@ -190,12 +198,14 @@ const handlerMute = () => {
           cursor: pointer;
           user-select: none;
         }
+
         .track-info {
           height: 46px;
           margin-left: 12px;
           display: flex;
           flex-direction: column;
           justify-content: center;
+
           .name {
             font-weight: 600;
             font-size: 16px;
@@ -208,6 +218,7 @@ const handlerMute = () => {
             overflow: hidden;
             word-break: break-all;
           }
+
           .artist {
             font-size: 12px;
             opacity: 0.58;
@@ -217,22 +228,28 @@ const handlerMute = () => {
             -webkit-line-clamp: 1;
             overflow: hidden;
             word-break: break-all;
+
             // span.ar {
             //   cursor: pointer;
             //   &:hover {
             //     text-decoration: underline;
             //   }
             // }
+            .time {
+              margin-left: 1em;
+            }
           }
         }
       }
     }
+
     .controls {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 0 8px;
+
       .btn {
         margin: 0 8px;
         // padding: 0;
@@ -243,23 +260,28 @@ const handlerMute = () => {
         border: none;
         outline: none;
         cursor: pointer;
+
         &:hover {
           background-color: #f5f5f7;
         }
+
         img {
           width: 100%;
           height: 100%;
         }
       }
+
       .pause {
         width: 56px;
         height: 45px;
       }
     }
+
     .volumes {
       display: flex;
       align-items: center;
       justify-content: flex-end;
+
       .btn {
         margin: 0 8px;
         width: 32px;
@@ -269,28 +291,34 @@ const handlerMute = () => {
         border: none;
         outline: none;
         cursor: pointer;
+
         &:hover {
           background-color: #f5f5f7;
         }
+
         .loop-img {
           width: 100%;
           height: 100%;
         }
+
         .volume-img,
         .loop-img {
           width: 100%;
           height: 100%;
         }
       }
+
       &-bar {
         width: 85px;
         height: 4px;
         background-color: hsl(0deg 0% 50% / 18%);
         border-radius: 10px;
         position: relative;
+
         :deep(.vue3-slider) {
           margin: 0;
         }
+
         // .tiao {
         //   position: absolute;
         //   width: 50%;

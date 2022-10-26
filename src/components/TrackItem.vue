@@ -1,7 +1,7 @@
 <template>
   <div class="track">
     <!-- <div> -->
-    <img class="cover" :src="cover" />
+    <img class="cover" :src="cover" @click="handlerPlayerMusic(track)" />
     <!-- </div> -->
     <div class="info">
       <div class="container">

@@ -3,7 +3,7 @@
   <router-view />
   <Loading />
   <!-- <Barrage /> -->
-  <!-- <Player /> -->
+  <Player />
   <TopUp />
 </template>
 

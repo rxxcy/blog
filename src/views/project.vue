@@ -25,7 +25,7 @@ import { ref } from 'vue'
 const ideas = ref([
   { id: 1, name: '图像显隐', url: 'https://lab.rxxcy.com/magic', description: '文本写入图片' },
   { id: 2, name: '二进制时钟', url: 'https://lab.rxxcy.com/clock', description: 'kde二进制时钟' },
-  { id: 3, name: '好看的颜色', url: 'https://lab.rxxcy.com/color', description: '鲜艳' },
+  { id: 3, name: '好看的颜色', url: 'https://lab.rxxcy.com/color', description: '高对比度' },
   { id: 4, name: 'hash', url: 'https://lab.rxxcy.com/hash', description: '哈希' },
 ])
 </script>

@@ -33,12 +33,13 @@
 <script setup>
 import Below from '../../components/Below.vue'
 import { onMounted, reactive, ref } from 'vue'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
+import { useHomeStore } from '../../store/home'
 import axios from 'axios'
 import SkkImage from '../../components/Image.vue'
 const list = ref([])
-const store = useStore()
-const me = reactive(store.state.me)
+const store = useHomeStore()
+const me = reactive(store.me)
 
 onMounted(async () => {
   // document.body.scrollTop = 0
