@@ -4,7 +4,7 @@ export const MusicStore = defineStore({
   id: 'music',
   state: () => {
     return {
-      enabled: true,
+      enabled: false,
 
       volume: 0,
       beforeMMuteVolume: 0,

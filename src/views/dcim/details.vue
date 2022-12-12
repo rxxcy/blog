@@ -48,7 +48,7 @@ onMounted(async () => {
     // const { data } = await axios.get('https://api.rxxcy.com/v1/image/buyershow?format=string')
     // console.log(data)
     // list.value.push(data)
-    list.value.push('https://img.rxxcy.com/i/images/2022/05/627c83a0ba476.jpg')
+    list.value.push('http://p5.qhimg.com/bdr/__85/t01ec742a0f5973c5e2.jpg')
   }
 })
 </script>
@@ -57,32 +57,38 @@ onMounted(async () => {
 main {
   background: linear-gradient(#e8eeff, #fff) repeat-x top left;
   background-size: 100% 300px;
+
   .info {
     max-width: 800px;
     padding: 7em 20px 0 20px;
     margin: 0 auto;
+
     h1 {
       font-family: '微软雅黑';
       font-weight: 200;
       font-size: 3em;
     }
+
     p {
       margin-top: 1em;
       display: flex;
       align-items: center;
       font-size: 1.2em;
+
       img {
         width: 1.5em;
         height: 1.5em;
         margin-right: 0.5em;
         border-radius: 1em;
       }
+
       span,
       a,
       time {
         margin-right: 1em;
       }
     }
+
     .description {
       font-size: 1.2em;
       margin-top: 2em;
@@ -118,11 +124,13 @@ main {
   $container-width: 1800px;
   $gap: 10px;
   $colmun: 5;
+
   .container {
     width: $container-width;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+
     .item {
       width: calc(($container-width - (($colmun * 2) * $gap)) / $colmun);
       height: calc(($container-width - (($colmun * 2) * $gap)) / $colmun + 20px);

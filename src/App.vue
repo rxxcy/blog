@@ -1,10 +1,10 @@
 <template>
-  <AppHeader />
+  <app-header />
   <router-view />
-  <Loading />
+  <loading />
   <!-- <Barrage /> -->
-  <Player />
-  <TopUp />
+  <player />
+  <top-up />
 </template>
 
 <script setup>

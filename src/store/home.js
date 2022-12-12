@@ -7,7 +7,7 @@ export const useHomeStore = defineStore({
       me: {
         nick: '若许闲乘月',
         avatar: 'https://img.rxxcy.com/i/images/2022/05/6282fd105912a.jpeg',
-        autograph: '想学前端',
+        autograph: '前端',
         description: [],
       },
     }
