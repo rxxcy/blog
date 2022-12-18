@@ -17,7 +17,7 @@ const [year, now] = time()
 const buildInfo = `
 <!--
    © ${year} 若许闲乘月.
-   Time: ${now}
+   Build: ${now}
 
    ===
    「この能力が光散らす その先に遥かな想いを」

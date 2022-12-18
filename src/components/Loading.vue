@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { nextTick, ref, watch, reactive } from 'vue'
+import { ref, watch, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 // import { useStore } from 'vuex'
 import { SystemStore } from '../store/system'
@@ -26,7 +26,6 @@ watch(
     if (n === true) {
       setTimeOut = setInterval(() => {
         gwei.value += 1
-        nextTick()
       }, 1000)
     } else {
       gwei.value = 0
@@ -49,12 +48,15 @@ watch(
   justify-content: center;
   align-items: center;
   z-index: $loader-z-index;
+
   .img {
     z-index: $loder-img-z-index;
+
     img {
       border-radius: 5em;
     }
   }
+
   &::before {
     content: '';
     // background-color: #f7fcff;
@@ -64,9 +66,10 @@ watch(
     top: 0;
     left: 0;
     z-index: $loder-zhe-z-index;
-    background-color: rgba(247, 249, 250, 0.2);
+    background-color: rgba(247, 249, 250, 0.5);
     backdrop-filter: blur(7px);
   }
+
   p {
     z-index: 99999;
     position: fixed;

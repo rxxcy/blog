@@ -45,10 +45,10 @@ onMounted(async () => {
   // document.body.scrollTop = 0
   // document.documentElement.scrollTop = 0
   for (let index = 0; index < 25; index++) {
-    // const { data } = await axios.get('https://api.rxxcy.com/v1/image/buyershow?format=string')
-    // console.log(data)
-    // list.value.push(data)
-    list.value.push('http://p5.qhimg.com/bdr/__85/t01ec742a0f5973c5e2.jpg')
+    const { data } = await axios.get('https://api.rxxcy.com/v1/image/buyershow?format=string')
+    console.log(data)
+    list.value.push(data)
+    // list.value.push('http://p5.qhimg.com/bdr/__85/t01ec742a0f5973c5e2.jpg')
   }
 })
 </script>

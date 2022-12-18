@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { pinia } from '../store'
-import { SystemStore } from '../store/system'
+// import { pinia } from '../store'
+// import { SystemStore } from '../store/system'
 import Home from '../views/home.vue'
 
 const routes = [
@@ -93,13 +93,13 @@ const router = createRouter({
   routes,
 })
 
-const store = SystemStore(pinia)
+// const store = SystemStore(pinia)
 
 router.beforeEach((to, from, next) => {
   const { title } = to.meta
   window.document.title = title ? `${title} - 若许闲乘月` : '若许闲乘月'
-  store.loadingStart()
-  setTimeout(() => store.loadingFinish(), 300)
+  // store.loadingStart()
+  // setTimeout(() => store.loadingFinish(), 300)
   next()
 })
 
