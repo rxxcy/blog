@@ -1,5 +1,5 @@
 <template>
-  <n-scrollbar style="max-height: 100vh" trigger="none">
+  <n-scrollbar style="max-height: 100vh">
     <app-header />
     <router-view />
     <!-- <loading /> -->
