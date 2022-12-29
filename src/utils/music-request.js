@@ -1,16 +1,8 @@
 import axios from 'axios'
-import NProgress from 'nprogress'
+import { loader } from './axios'
 
 // const baseURL = 'https://music.qier222.com/api'
 const baseURL = 'https://api-music.imsyy.top'
-
-NProgress.configure({
-  easing: 'ease', // 动画方式
-  speed: 500, // 递增进度条的速度
-  showSpinner: true, // 是否显示加载 icon
-  trickleSpeed: 200, // 自动递增间隔
-  minimum: 0.3, // 初始化时的最小百分比
-})
 
 const instance = axios.create({
   baseURL,
@@ -19,11 +11,11 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   config => {
-    NProgress.start()
+    loader.start()
     return config
   },
   error => {
-    NProgress.done()
+    loader.error(error?.message)
     console.log(error)
     return Promise.reject()
   }
@@ -31,12 +23,12 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   response => {
-    NProgress.done()
+    loader.done()
     return response.data
   },
   error => {
     console.log(error)
-    NProgress.done()
+    loader.error(error?.message)
     return Promise.reject()
   }
 )

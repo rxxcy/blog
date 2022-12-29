@@ -74,7 +74,7 @@ main {
     max-width: 850px;
     padding: 0 20px;
     margin: 0 auto;
-    padding: 2em 0 10em;
+    padding: 2em 0 0 0;
     p {
       font-size: 1.35em;
       line-height: 1.3;

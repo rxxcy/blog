@@ -1,15 +1,15 @@
 import axios from 'axios'
-import NProgress from 'nprogress'
 
 const baseURL = ''
 
-NProgress.configure({
-  easing: 'ease', // 动画方式
-  speed: 500, // 递增进度条的速度
-  showSpinner: true, // 是否显示加载 icon
-  trickleSpeed: 200, // 自动递增间隔
-  minimum: 0.3, // 初始化时的最小百分比
-})
+const loader = {
+  start: () => window.$loadingBar && window.$loadingBar.start(),
+  error: e => {
+    window.$loadingBar && window.$loadingBar.error()
+    window.$message && window.$message.error(e || '请求失败')
+  },
+  done: () => window.$loadingBar && window.$loadingBar.finish(),
+}
 
 const instance = axios.create({
   baseURL,
@@ -18,26 +18,28 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   config => {
-    NProgress.start()
+    loader.start()
     return config
   },
   error => {
-    NProgress.done()
-    console.log(error)
+    console.log(error?.message)
+    loader.error()
     return Promise.reject()
   }
 )
 
 instance.interceptors.response.use(
   response => {
-    NProgress.done()
+    loader.done()
     return response.data
   },
   error => {
-    NProgress.done()
+    loader.error(error?.message)
     console.log(error)
     return Promise.reject()
   }
 )
 
 export default instance
+
+export { loader }

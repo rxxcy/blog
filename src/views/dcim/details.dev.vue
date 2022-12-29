@@ -22,23 +22,21 @@
       </div>
     </div>
     <div class="container">
-      <!-- <skk-image :src="i" /> -->
-      <n-image-group>
-        <n-image width="100" v-for="i in list" :src="i" />
-      </n-image-group>
+      <div class="item" v-for="i in list">
+        <skk-image :src="i" />
+      </div>
     </div>
     <below />
   </main>
 </template>
 
 <script setup>
-import { NImageGroup, NImage } from 'naive-ui'
 import Below from '../../components/Below.vue'
 import { onMounted, reactive, ref } from 'vue'
 // import { useStore } from 'vuex'
 import { useHomeStore } from '../../store/home'
 import axios from 'axios'
-// import SkkImage from '../../components/Image.vue'
+import SkkImage from '../../components/Image.vue'
 const list = ref([])
 const store = useHomeStore()
 const me = reactive(store.me)
@@ -48,38 +46,11 @@ onMounted(async () => {
   // document.documentElement.scrollTop = 0
   for (let index = 0; index < 25; index++) {
     const { data } = await axios.get('https://api.rxxcy.com/v1/image/buyershow?format=string')
-    // console.log(data)
+    console.log(data)
     list.value.push(data)
     // list.value.push('http://p5.qhimg.com/bdr/__85/t01ec742a0f5973c5e2.jpg')
   }
 })
-
-const getWaterfall = () => {
-  let columns = 2 //定义布局的列数为2
-  // let item = this.$refs.waterfallItem; //获取每个子元素的DOM
-  console.log('item', item)
-  for (let i = 0; i < item.length; i++) {
-    //遍历整个子元素的DOM集合
-    if (i < columns) {
-      //小于columns的子元素作为第一行
-      item[i].style.top = 20 + 'px'
-      item[i].style.left = item[0].clientWidth * i + 'px'
-      console.log('offsetWidth', item[0].clientHeight)
-      this.array.push(item[i].clientHeight) //遍历结束时，数组this.array保存的是第一行子元素的元素高度
-      console.log('this.array', this.array)
-    } else {
-      //大于等于columns的子元素将作其他行
-      let minHeight = Math.min(...this.array) //  找到第一列的最小高度
-      let index = this.array.findIndex(item => item === minHeight) // 找到最小高度的索引
-      //设置当前子元素项的位置
-      item[i].style.top = this.array[index] + 25 + 'px'
-      item[i].style.left = item[index].offsetLeft + 'px'
-      //重新定义数组最小项的高度 进行累加
-      this.array[index] += item[i].clientHeight
-      console.log('this.array[index]', this.array[index])
-    }
-  }
-}
 </script>
 
 <style lang="scss" scoped>
@@ -150,22 +121,22 @@ main {
     color: $grey;
   }
 
-  // $container-width: 1800px;
-  // $gap: 10px;
-  // $colmun: 5;
+  $container-width: 1800px;
+  $gap: 10px;
+  $colmun: 5;
 
-  // .container {
-  //   width: $container-width;
-  //   margin: 0 auto;
-  //   display: flex;
-  //   flex-wrap: wrap;
+  .container {
+    width: $container-width;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
 
-  //   .item {
-  //     width: calc(($container-width - (($colmun * 2) * $gap)) / $colmun);
-  //     height: calc(($container-width - (($colmun * 2) * $gap)) / $colmun + 20px);
-  //     margin: $gap;
-  //     background-color: rgba($color: #000000, $alpha: 0.1);
-  //   }
-  // }
+    .item {
+      width: calc(($container-width - (($colmun * 2) * $gap)) / $colmun);
+      height: calc(($container-width - (($colmun * 2) * $gap)) / $colmun + 20px);
+      margin: $gap;
+      background-color: rgba($color: #000000, $alpha: 0.1);
+    }
+  }
 }
 </style>

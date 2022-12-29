@@ -18,7 +18,8 @@
         </div>
       </div>
       <div class="search">
-        <input type="text" v-model="keywords" class="keywords" :placeholder="placeholder" @keyup.enter="handlerSearchTracks" />
+        <input type="text" v-model="keywords" class="keywords" :placeholder="placeholder"
+          @keyup.enter="handlerSearchTracks" />
       </div>
       <div class="track-list">
         <TrackItem v-for="(track, index) in tracks" :track="track" :key="index" @playTrack="handlerPlayerTrack" />
@@ -159,14 +160,17 @@ main {
   background: linear-gradient(#fdefef, #fff) repeat-x top left;
   background-size: 100% 300px;
   min-height: 600px;
+
   .music {
     width: 70%;
     margin: 0 auto;
+
     // padding: 100px 10vw 0 10vw;
     .jumbotron {
       display: flex;
       padding-top: 70px;
       margin-bottom: 35px;
+
       .cover {
         width: 290px;
         height: 290px;
@@ -175,21 +179,25 @@ main {
         justify-content: center;
         background-color: rgb(233, 128, 178);
         border-radius: 0.7em;
+
         .title {
           color: #fff;
           font-size: 3.5em;
           font-weight: 200;
         }
       }
+
       .info {
         flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         margin-left: 56px;
+
         .title {
           font-size: 2.2em;
         }
+
         .source {
           font-size: 1.3em;
           color: #222;
@@ -197,6 +205,7 @@ main {
           font-weight: 200;
           font-family: $wryh;
         }
+
         .date {
           font-family: $wryh;
           font-size: 14px;
@@ -204,6 +213,7 @@ main {
           color: #000;
           margin-top: 2px;
         }
+
         .description {
           font-family: $wryh;
           font-size: 14px;
@@ -216,8 +226,10 @@ main {
           overflow: hidden;
           cursor: pointer;
         }
+
         .contro {
           margin-top: 32px;
+
           .btn {
             margin-right: 16px;
             color: #335eea;
@@ -240,9 +252,11 @@ main {
       // visibility: hidden;
       opacity: 0;
       transition: all 0.3s;
+
       &:hover {
         opacity: 1;
       }
+
       .keywords {
         width: 270px;
         background-color: rgb(227, 227, 227);
